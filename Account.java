@@ -18,4 +18,15 @@ public class Account {
         this.username = username;
         this.password = password; 
     }
+
+    public String getUser() {
+        return username;
+    }
+
+    public String getPass() {
+        return password;
+    }
+    public String getEmail() {
+        return emailAddress;
+    }
 }
