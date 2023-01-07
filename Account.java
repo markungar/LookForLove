@@ -29,4 +29,33 @@ public class Account {
     public String getEmail() {
         return emailAddress;
     }
+
+    public int getPhoneNum() {
+        return phoneNumber;
+    }
+
+    public String setUser(String user) {
+        username = user;
+        return username;
+    }
+
+    public String setPass(String pass) {
+        password = pass;
+        return password;
+    }
+    public String setEmail(String email) {
+        emailAddress = email;
+        return emailAddress;
+    }
+
+    public int setPhoneNum(int num) {
+        phoneNumber = num;
+        return phoneNumber;
+    }
+
+    public String toString() {
+        return "Name: " + firstName + " " + lastName + "\nPhone Number: " + phoneNumber + "\nEmail Address: " + emailAddress;
+    }
+
+    
 }

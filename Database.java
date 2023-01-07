@@ -47,8 +47,5 @@ public class Database {
         return "account not found";
     }
 
-    public boolean registerFromFile () {
-        
-    }
 
 }

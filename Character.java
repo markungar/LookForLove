@@ -2,32 +2,26 @@ package LookForLove;
 
 public class Character {
     protected String gender;
-    protected int age;
     protected String ethnicity;
     protected double height;
-    protected int wishAgeMin;
-    protected int wishAgeMax;
 
-    public Character (String gender, int age, String ethnicity, double height, int wishAgeMin, int wishAgeMax) {
+    public Character (String gender, String ethnicity, double height) {
         this.gender = gender;
-        this.age = age;
         this.ethnicity = ethnicity;
         this.height = height;
-        this.wishAgeMin = wishAgeMin;
-        this.wishAgeMax = wishAgeMax;
     }
 
-    public boolean fit(Character wish) {
+    /*public boolean fit(WishCharacter wish) {
         boolean fits = true;
 
         if (this.gender != wish.gender) {
             fits = false;
-        } else if (wish.wishAgeMax < this.age || wish.wishAgeMin > this.age) {
+        } else if (wish.getAgeMax() < this.age || wish.wishAgeMin > this.age) {
             fits = false;
         }   
          
         return fits;
-    }
+    }*/
 
     public double matchPercent(Character wish) {
         double matchCount = 0;
