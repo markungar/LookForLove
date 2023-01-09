@@ -5,64 +5,96 @@ import java.lang.*;
 
 public class Database {
 	
-	// Global fields.
+
+		// Global fields.
+
 	private Person logInUser; // the current user that's currently logged in the Database, null if no user is logged in.
 	private Person root; // the root of our unbalanced binary tree.
-	private String fileName; // the file that the Database is going to read/write to.
 	private Map<String, LoginKey> loginLookUp;
 
-	// 
+
+		// Database()
+		// ---------------------------------------------------------------------------------------------------------------------------------------------------
+		// Purpose: Initializes a Database with 1 Person in it as the root and set the file that it wants to interact with.
+		// *Note: No user is logged in so logInUseris null.
+
 	public Database(Person root) {
 
-		logInUser = null;
-		this.root = root;
-		this.root.parent = null;
-		this.fileName = "accountInfo.txt";
+		logInUser = null; // no user logged in.
+		this.root = root; // the root of the binary tree.
+		this.root.parent = null; // since this is the root, no parent is assigned to this node.
 
+		// add this user to the lookup map, useful when checking if a user exists in the database or checking 
 		loginLookUp = new Map<String, LoginKey>();
 		loginLookUp.put(this.root.loginInfo.getUsername(), new LoginKey(this.root.loginInfo.getPassword(), root) );
 	
 	}
 
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
-	public String getFileName() {
-		return fileName;
-	}
+
+		// insert()
+		// ---------------------------------------------------------------------------------------------------------------------------------------------------	
+		// Purpose: Wrapper method for the next insert function.
 
 	public boolean insert(Person newNode) {
 		insert(newNode, root);
 	}
+
+
+		// insert()
+		// ---------------------------------------------------------------------------------------------------------------------------------------------------
+		// Purpose: Insert newNode into the binary tree.
+		// 	This method achieves it by recursively comparing newNode to the closest node by their age.
+		// *Note: If the two nodes have equal age, then insert newNode to the left of oldNode.
  
 	public boolean insert(Person newNode, Person oldNode) {
+
 		try {
+			// new node has a smaller equal age than old node.
 			if (newNode.compareTo(oldNode) <= 0) {
+
+				// if old node's left child is empty, append new node.
 				if (oldNode.leftChild == null) {
 					oldNode.leftChild = newNode;
 					newNode.parent = oldNode;
 				}
+
+				// else continue down old node's left child.
 				else {
-					insert(newNode, oldNode.leftChild);
+					// return the results (whether successful) of insert(newNode, oldNode.leftChild).
+					return insert(newNode, oldNode.leftChild);
 				}
-			}	
+			}
+			// new node hase a bigger age than old node.
 			else {
+
+				// if old node's right child is empty, append new node.
 				if (oldNode.rightChild == null) {
 					oldNode.rightChild = newNode;
 					newNode.parent = oldNode;
 				}
+
+				// else continue down old node's right child.
 				else {
-					insert(newNode, oldNode.rightChild);
+					// return the results (whether successful) of insert(newNode, oldNode.rightChild).
+					return insert(newNode, oldNode.rightChild);
 				}
 			}
 
+			// everything went smoothly, return true.
 			return true;
 
 		} 
+		// Errors occur in inserting
 		catch (Exception e) {
 			return false;
 		}
 	}
+
+
+		// logIn()
+		// ---------------------------------------------------------------------------------------------------------------------------------------------------
+		// Purpose: take in a pair of <username, password>.
+		//	check if the user name exists. If it does, 
 
 	public boolean logIn(String username, String password) {
 		
