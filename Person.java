@@ -3,11 +3,11 @@ package LookForLove;
 public abstract class Person {
     protected Account loginInfo;
     protected Character trait;
-    protected Character wish;
+    protected WishCharacter wish;
     protected String description;
-    protected Prompts[] prompts;
+    protected String[] prompts;
 
-    public Person (Account loginInfo, Character trait, Character wish, String description, Prompts[] prompts) {
+    public Person (Account loginInfo, Character trait, WishCharacter wish, String description, String[] prompts) {
         this.loginInfo = loginInfo;
         this.trait = trait;
         this.wish = wish;
@@ -35,7 +35,7 @@ public abstract class Person {
         return description;
     }
 
-    public Prompts[] getPrompts() {
+    public String[] getPrompts() {
         return prompts;
     }
 
@@ -49,7 +49,7 @@ public abstract class Person {
         return trait;
     }
     
-    public Character setWish(Character wish) {
+    public WishCharacter setWish(WishCharacter wish) {
         this.wish = wish;
         return wish;
     }
@@ -59,7 +59,7 @@ public abstract class Person {
         return description;
     }
 
-    public Prompts[] setPrompts(Prompts[] prompts) {
+    public String[] setPrompts(String[] prompts) {
         this.prompts = prompts;
         return prompts;
     }
@@ -73,7 +73,7 @@ public abstract class Person {
     }
     
     public abstract int totalScore(Person other);
-    public abstract int promptsScore(String[] other);
+    public abstract int promptsScore(Person other);
     public abstract int wishScore(Person other);
 
 

@@ -3,13 +3,19 @@ package LookForLove;
 public class WishCharacter extends Character {
     private int ageMin;
     private int ageMax;
-    private String attraction;
 
-    public WishCharacter(String gender, String ethnicity, double height, int min, int max, String attraction) {
-        super(gender, ethnicity, height);
+    public WishCharacter(String ethnicity, int age, int height, int min, int max) {
+        super(ethnicity, age, height);
         ageMin = min;
         ageMax = max;
-        this.attraction = attraction;
+    }
+
+    public boolean fit (Character other) {
+        if (this.ageMin > other.getAge() || this.ageMax < other.getAge()) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public int getAgeMax() {
@@ -20,7 +26,7 @@ public class WishCharacter extends Character {
         return ageMin;
     }
 
-    public String getAgeAttraction() {
-        return attraction;
+    public String toString() {
+        return "\nage: " + age + "\nethnicity: " + ethnicity + "\nheight: " + height + "wish age range: " + ageMin + " - " + ageMax;
     }
 }
