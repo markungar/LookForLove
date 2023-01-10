@@ -468,6 +468,25 @@ public class Database {
 
 		} while (!validInfo);
 
+		System.out.println("\nPart C. Prompts");
+        	System.out.println("For this part, we ask more questions about yourself.");
+
+		System.out.println("C1. What is your favourite movie?");
+		System.out.print("Please provide your answer: ");
+		String favouriteMovie = sc.nextLine();
+
+		System.out.println("\nC2. What is your favourite sport?");
+		System.out.print("Please provide your answer: ");
+		String favouriteSport = sc.nextLine();
+
+		System.out.println("\nC3. What is your favourite season?");
+		System.out.print("Please provide your answer: ");
+		String favouriteSeason = sc.nextLine();
+
+		System.out.println("\nC4. What is your favourite music genre?");
+		System.out.print("Please provide your answer: ");
+		String favouriteGenre = sc.nextLine();
+
 		loginInfo = new Account(firstName, lastName, phoneNumber, emailAddress, username, password);
 		
 	}
