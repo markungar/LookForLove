@@ -10,7 +10,7 @@ public class Database {
 
 	private Person logInUser; // the current user that's currently logged in the Database, null if no user is logged in.
 	private Person root; // the root of our unbalanced binary tree.
-	private Map<String, LoginKey> loginLookUp;
+	public Map<String, LoginKey> loginLookUp;
 
 
 		// Database()
@@ -134,7 +134,7 @@ public class Database {
 
 		String result;
 
-		String firstName, LastName, emailAddress, username, password, passwordCheck, ethnicity, description;
+		String firstName, lastName, emailAddress, username, password, passwordCheck, ethnicity, description;
 		String wishEthnicity;
 
 		int age, height, phoneNumber;
@@ -143,7 +143,7 @@ public class Database {
 		String[] prompts = new String[4];
 		Account loginInfo;
 		Character trait;
-		wishCharacter wish;
+		WishCharacter wish;
 		
 		System.out.println("We will now begin the registering process...");
 		System.out.println("We will ask a couple of questions about yourself so we can understand your needs.");
@@ -273,13 +273,13 @@ public class Database {
 		System.out.println("Note that this section is purely optional; ");
 		System.out.println("If you are uncomfortable or don't know the answer to any question below, you can skip it by typing \"skip\" as the answer.");
 		System.out.println("Don't worry if you mistyped an answer! We'll have an option for users to edit their information once their accounts has been created.");
-		System.out.print();
+		System.out.println();
 		System.out.println("Ready?");
 		System.out.println("Enter (\"Yes\") or (\"No\"):");
 		
-		String ready = sc.nextLine().toLowercase();
-		if (!ready.equals("yes")) {
-			if (ready.equals("no")) {
+		String ready = sc.nextLine();
+		if (!ready.equalsIgnoreCase("yes")) {
+			if (ready.equalsIgnoreCase("no")) {
 				System.out.println("Love can't wait! Just a couple more questions and true love is ahead!");
 			}
 			else {
@@ -292,11 +292,11 @@ public class Database {
 		
 		System.out.println("B1. Which culture are you from? (IE. African, Asian-American, French, etc..)");
 		System.out.print("Please provide your answer: ");
-		ethnicity = sc.nextLine().toLowercase();
-		if (ethnicity.equals("quit")) {
+		ethnicity = sc.nextLine();
+		if (ethnicity.equalsIgnoreCase("quit")) {
 			return false;
 		}
-		else if (ethnicity.equals("skip")) {
+		else if (ethnicity.equalsIgnoreCase("skip")) {
 			ethnicity = "-1";
 		}
 
@@ -316,7 +316,7 @@ public class Database {
 
 			}
 			catch (NumberFormatException nfx) {
-				if (result.toLowercase().equals("skip")) {
+				if (result.equalsIgnoreCase("skip")) {
 					height = -1;
 				}
 				else {
@@ -369,18 +369,18 @@ public class Database {
 
 		System.out.println("B4. In which culture do you think your ideal one is most attractive from?");
 		System.out.print("Please provide your answer: ");
-		wishEthnicity = sc.nextLine().toLowercase();
+		wishEthnicity = sc.nextLine();
 		
-		if (wishEthnicity.equals("quit")) {
+		if (wishEthnicity.equalsIgnoreCase("quit")) {
 			return false;
 		}
-		else if (wishEthnicity.equals("skip")) {
+		else if (wishEthnicity.equalsIgnoreCase("skip")) {
 			wishEthnicity = "-1";
 		}
 
 		do {
 		
-			valueInfo = true;
+			validInfo = true;
 			System.out.println();
 			
 			System.out.println("B5. What would be the preferrable height that you wish your partner have? ");
@@ -410,7 +410,7 @@ public class Database {
 
 		do {
 		
-			valueInfo = true;
+			validInfo = true;
 			System.out.println();
 			
 			System.out.println("B4. What would be the youngest age that you wish your partner is? ");
@@ -440,7 +440,7 @@ public class Database {
 
 		do {
 		
-			valueInfo = true;
+			validInfo = true;
 			System.out.println();
 			
 			System.out.println("B5. What would be the oldest age that you wish your partner is? ");
@@ -468,26 +468,28 @@ public class Database {
 
 		} while (!validInfo);
 
-		System.out.println("\nPart C. Prompts");
-        	System.out.println("For this part, we ask more questions about yourself.");
+		// Prompt Questions which are stored into an array inside of Person
 
-		System.out.println("C1. What is your favourite movie?");
-		System.out.print("Please provide your answer: ");
-		String favouriteMovie = sc.nextLine();
+        System.out.println("\nPart C. Prompts");
+        System.out.println("For this part, we ask more questions about yourself.");
 
-		System.out.println("\nC2. What is your favourite sport?");
-		System.out.print("Please provide your answer: ");
-		String favouriteSport = sc.nextLine();
+        System.out.println("C1. What is your favourite movie?");
+        System.out.print("Please provide your answer: ");
+        String favouriteMovie = sc.nextLine();
 
-		System.out.println("\nC3. What is your favourite season?");
-		System.out.print("Please provide your answer: ");
-		String favouriteSeason = sc.nextLine();
+        System.out.println("\nC2. What is your favourite sport?");
+        System.out.print("Please provide your answer: ");
+        String favouriteSport = sc.nextLine();
 
-		System.out.println("\nC4. What is your favourite music genre?");
-		System.out.print("Please provide your answer: ");
-		String favouriteGenre = sc.nextLine();
+        System.out.println("\nC3. What is your favourite season?");
+        System.out.print("Please provide your answer: ");
+        String favouriteSeason = sc.nextLine();
 
-		loginInfo = new Account(firstName, lastName, phoneNumber, emailAddress, username, password);
+        System.out.println("\nC4. What is your favourite music genre?");
+        System.out.print("Please provide your answer: ");
+        String favouriteGenre = sc.nextLine();
+
+		loginInfo = new Account(firstName, lastName, phoneNumber, emailAddress, age, username, password);
 		
 	}
 
