@@ -1,4 +1,3 @@
-
 package LookForLove;
 import java.io.*;
 import java.util.*;
@@ -27,7 +26,7 @@ public class Database {
 
 		// add this user to the lookup map, useful when checking if a user exists in the database or checking 
 		loginLookUp = new Map<String, LoginKey>();
-		loginLookUp.put(this.root.loginInfo.getUsername(), new LoginKey(this.root.loginInfo.getPassword(), root) );
+		loginLookUp.put(this.root.loginInfo.getUsername(), new LoginKey(this.root.loginInfo.getPassword(), root));
 	
 	}
 
@@ -37,7 +36,12 @@ public class Database {
 		// Purpose: Wrapper method for the next insert function.
 
 	public boolean insert(Person newNode) {
-		insert(newNode, root);
+		try {
+			insert(newNode, root);
+			return true;
+		} catch(Exception e) {
+			return false;
+		}
 	}
 
 
@@ -109,14 +113,14 @@ public class Database {
 			return false;
 		}
 
-		loginUser = userInfo.getPerson();
+		logInUser = userInfo.getPerson();
 		return true;
 	
 	}
 
 	public boolean logout() {
 		try {
-			loginUser = null;
+			logInUser = null;
 			return true;
 		}
 		catch (Exception e) {
@@ -126,19 +130,20 @@ public class Database {
 	}
 
 	public boolean checkUsernameExist(String username) {
-		return loginLookup.containsKey(username);
+		return loginLookUp.containsKey(username);
 	}
 
 	public boolean register() {
 
 		Scanner sc = new Scanner(System.in);
 
-		String result;
+		String result = "";
 
 		String firstName, lastName, emailAddress, username, password, passwordCheck, ethnicity, description;
 		String wishEthnicity;
 
-		int age, height, phoneNumber;
+		int age, height;
+		int phoneNumber = -1;
 		int wishAgeMin, wishAgeMax, wishHeight;
 
 		String[] prompts = new String[4];
@@ -252,7 +257,7 @@ public class Database {
 				if (result.equals("quit")) {
 					return false;
 				}
-				phoneNumber = Integer.valueOf(result);
+				phoneNumber = Integer.parseInt(result);
 				
 			}
 			catch (NumberFormatException nfx) {
@@ -310,7 +315,7 @@ public class Database {
 			System.out.print("Please provide your answer: ");
 			try {
 				result = sc.nextLine();
-				if (result.equals("quit")) {
+				if (result.equalsIgnoreCase("quit")) {
 					return false;
 				}
 				height = Integer.valueOf(result);
