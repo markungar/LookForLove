@@ -72,46 +72,11 @@ public class DatabaseRunner {
 				// Create wish. Part 3/5.
 				wishAgeMin = Integer.valueOf(in.readLine());
 				wishAgeMax = Integer.valueOf(in.readLine());
-				wishSexuality = 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+				wishSexuality = in.readLine();
 				wishEthnicity = in.readLine();
 				wishHeight = in.readLine();
 				in.readLine();
-				wish = new WishCharacter(wishEthnicity, wishHeight, wishAgeMin, wishAgeMax);
+				wish = new WishCharacter(wishAgeMin, wishAgeMax, wishSexuality, wishHeight, 0);
 
 				// Create prompts. Part 4/5.
 				prompts[0] = in.readLine();
@@ -119,7 +84,7 @@ public class DatabaseRunner {
 				prompts[2] = in.readLine();
 				prompts[3] = in.readLine();
 
-				// Read description. Part 5/5.
+				// Read description and gender. Part 5/5.
 				description = in.readLine();
 				gender = in.readLine();
 
@@ -216,12 +181,15 @@ public class DatabaseRunner {
 					// 	Line 9: age
 					// 	Line 10: min. age of choice
 					// 	Line 11: max. age of choice
-					// 	Line 12: ethnicity of choice
-					// 	Line 13: height of choice
-					// 	Line 14: answer of prompt #1
-					// 	Line 15: answer of prompt #2
-					// 	Line 16: answer of prompt #3
-					// 	Line 17: answer of prompt #4
+					//	Line 12: gender preference of choice
+					// 	Line 13: ethnicity of choice
+					// 	Line 14: height of choice
+					// 	Line 15: answer of prompt #1
+					// 	Line 16: answer of prompt #2
+					// 	Line 17: answer of prompt #3
+					// 	Line 18: answer of prompt #4
+					//	Line 19: description
+					//	Line 20: gender of user
 
 				// writing all information from loginInfo to the file.
 				out.write(loginInfo.getFirstName());
@@ -250,6 +218,8 @@ public class DatabaseRunner {
 				out.newLine();
 				out.write(Integer.toString(wish.getAgeMax()));
 				out.newLine();
+				out.write(wish.getSexuality());
+				out.newLine();
 				out.write(wish.getEthnicity());
 				out.newLine();
 				out.write(Integer.toString(wish.getHeight()));
@@ -270,7 +240,19 @@ public class DatabaseRunner {
 				// writing the description of current to the file.
 				out.write(description);
 				out.newLine();
-				
+
+				// writing the gender of current to the file.
+				if (current instanceof Male) {
+					out.write("1");
+				}
+				else if (current instanceof Female) {
+					out.write("2");
+				}
+				else {
+					out.write("3");
+				}
+				out.newLine();
+			
 				// if current has a left child, add it to the queue because it has not been added to the file.
 				if (current.leftChild != null) {
 					que.add(current.leftChild);
