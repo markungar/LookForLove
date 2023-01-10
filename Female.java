@@ -1,8 +1,8 @@
 package LookForLove;
 
 public class Female extends Person {
-    public Female (Account loginInfo, Character trait, WishCharacter wish, String description, String[] prompt) {
-        super(loginInfo, trait, wish, description, prompt);
+    public Female (Account loginInfo, Character trait, WishCharacter wish, String description, String favMovie, String favSport, String favSeason, String favGenre) {
+        super(loginInfo, trait, wish, description, favMovie, favSport, favSeason, favGenre);
     }
     //constructor for female that extends person
     
