@@ -142,9 +142,8 @@ public class Database {
 		String firstName, lastName, emailAddress, username, password, passwordCheck, ethnicity, description;
 		String wishEthnicity;
 
-		int age, height;
-		int phoneNumber = -1;
-		int wishAgeMin, wishAgeMax, wishHeight;
+		int age = -1, height = -1, phoneNumber = -1;
+		int wishAgeMin = -1, wishAgeMax = -1, wishHeight = -1;
 
 		String[] prompts = new String[4];
 		Account loginInfo;
@@ -512,13 +511,13 @@ public class Database {
 		System.out.print("Please provide your answer: ");
 		description = sc.nextLine();
 
-		//loginInfo = new Account(firstName, lastName, phoneNumber, emailAddress, age, username, password);
-		//trait = new Character(ethnicity, height, age);
-		//wish = new Wishcharacter(wishAgeMin, wishAgemax, wishEthnicity, wishHeight, 0);
-		
-		
-		
+		try {
+			loginInfo = new Account(firstName, lastName, phoneNumber, emailAddress, username, password);
+			trait = new Character(ethnicity, height, age);
+			wish = new WishCharacter(wishEthnicity, 0, wishHeight, wishAgeMin, wishAgeMax);
+			return true;
+		} catch(Exception e) {
+			return false;
+		}
 	}
-
-
 }
