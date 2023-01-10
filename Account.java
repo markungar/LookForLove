@@ -5,10 +5,12 @@ public class Account {
     protected String lastName;
     protected int phoneNumber;
     protected String emailAddress;
+    //initilizes non sensitive info
     
     private String username;
     private String password;
-
+    //initilizes sensitive info
+    
     public Account (String firstName, String lastName, int phoneNumber, String emailAddress, String username, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -17,6 +19,7 @@ public class Account {
         this.username = username;
         this.password = password; 
     }
+    //constructor for account
 
     public String getUsername() {
         return username;
@@ -25,6 +28,14 @@ public class Account {
     public String getPassword() {
         return password;
     }
+    
+    public String getFirstName() {
+        return firstName;
+    }
+    
+    public String getLastName() {
+        return lastName;
+    }
     public String getEmailAddress() {
         return emailAddress;
     }
@@ -32,7 +43,8 @@ public class Account {
     public int getPhoneNumber() {
         return phoneNumber;
     }
-
+    //all get statements
+    
     public String setUsername(String user) {
         username = user;
         return username;
@@ -51,10 +63,12 @@ public class Account {
         phoneNumber = num;
         return phoneNumber;
     }
+    //all set statements
 
     public String toString() {
         return "Name: " + firstName + " " + lastName + "\nPhone Number: " + phoneNumber + "\nEmail Address: " + emailAddress;
     }
+    //account to string that displays the full name, phone number and email address for the person
 
     
 }
