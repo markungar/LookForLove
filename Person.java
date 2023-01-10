@@ -67,6 +67,10 @@ public abstract class Person {
         return prompts;
     }
 
+    public int compareTo(Person other) {
+        return this.trait.age - other.trait.age;
+    }
+    
     public boolean equals(Person other) {
         if (this.loginInfo.getPassword() == other.loginInfo.getPassword() && this.loginInfo.getUsername().equals(other.loginInfo.getUsername())) {
             return true;
