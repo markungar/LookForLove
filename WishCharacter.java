@@ -3,9 +3,11 @@ package LookForLove;
 public class WishCharacter extends Character {
     private int ageMin;
     private int ageMax;
+    private String sexuality;
 
-    public WishCharacter(String ethnicity, int age, int height, int min, int max) {
+    public WishCharacter(int min, int max, String sexuality,String ethnicity, int height, int age) {
         super(ethnicity, age, height);
+        this.sexuality = sexuality;
         ageMin = min;
         ageMax = max;
     }
