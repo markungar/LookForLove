@@ -60,11 +60,20 @@ public abstract class Person {
     }
 
     public boolean setPrompts(String favMovie, String favSport, String favSeason, String favGenre) {
-        prompts[0] = favMovie;
-        prompts[1] = favSport;
-        prompts[2] = favSeason;
-        prompts[3] = favGenre;
-        return prompts;
+        try
+        {
+            prompts[0] = favMovie;
+            prompts[1] = favSport;
+            prompts[2] = favSeason;
+            prompts[3] = favGenre;
+        }
+        
+        catch (ArrayIndexOutOfBoundsException e) 
+        {
+            return false;
+        }
+        
+        return true;
     }
 
     public int compareTo(Person other) {
