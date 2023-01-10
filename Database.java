@@ -1,3 +1,4 @@
+
 package LookForLove;
 import java.io.*;
 import java.util.*;
@@ -94,7 +95,7 @@ public class Database {
 		// logIn()
 		// ---------------------------------------------------------------------------------------------------------------------------------------------------
 		// Purpose: take in a pair of <username, password>.
-		//	check if the user name exists. If it does, 
+		//	check if the username exists. If it does, set the loginUser as the Person corresponding to that username.
 
 	public boolean logIn(String username, String password) {
 		
@@ -470,26 +471,47 @@ public class Database {
 
 		// Prompt Questions which are stored into an array inside of Person
 
-        System.out.println("\nPart C. Prompts");
-        System.out.println("For this part, we ask more questions about yourself.");
+       		System.out.println("\nPart C. Prompts");
+        	System.out.println("For this part, we ask more questions about yourself;");
+		System.out.println("In this part, the answers will match you with other people with similar interests as you!");
 
-        System.out.println("C1. What is your favourite movie?");
-        System.out.print("Please provide your answer: ");
-        String favouriteMovie = sc.nextLine();
+		System.out.println();
 
-        System.out.println("\nC2. What is your favourite sport?");
-        System.out.print("Please provide your answer: ");
-        String favouriteSport = sc.nextLine();
+        	System.out.println("C1. What is your favourite movie?");
+        	System.out.print("Please provide your answer: ");
+        	prompts[0] = sc.nextLine();
 
-        System.out.println("\nC3. What is your favourite season?");
-        System.out.print("Please provide your answer: ");
-        String favouriteSeason = sc.nextLine();
+		System.out.println();
 
-        System.out.println("\nC4. What is your favourite music genre?");
-        System.out.print("Please provide your answer: ");
-        String favouriteGenre = sc.nextLine();
+       	 	System.out.println("C2. What is your favourite sport?");
+        	System.out.print("Please provide your answer: ");
+        	prompts[1] = sc.nextLine();
 
-		loginInfo = new Account(firstName, lastName, phoneNumber, emailAddress, age, username, password);
+		System.out.println();
+
+        	System.out.println("C3. What is your favourite season?");
+        	System.out.print("Please provide your answer: ");
+        	prompts[2] = sc.nextLine();
+
+		System.out.println();
+
+        	System.out.println("\nC4. What is your favourite music genre?");
+        	System.out.print("Please provide your answer: ");
+        	prompts[3] = sc.nextLine();
+
+		System.out.println();
+
+		System.out.println("Part 4. Description");
+		System.out.println("Next, please write out anything you would like to add for others to know about you.");
+		System.out.println("Please write it in a single line of code, pressing enter will effectively terminate your answers.");
+		System.out.print("Please provide your answer: ");
+		description = sc.nextLine();
+
+		//loginInfo = new Account(firstName, lastName, phoneNumber, emailAddress, age, username, password);
+		//trait = new Character(ethnicity, height, age);
+		//wish = new Wishcharacter(wishAgeMin, wishAgemax, wishEthnicity, wishHeight, 0);
+		
+		
 		
 	}
 
