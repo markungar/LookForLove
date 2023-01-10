@@ -4,6 +4,8 @@ public class Female extends Person {
     public Female (Account loginInfo, Character trait, WishCharacter wish, String description, String[] prompt) {
         super(loginInfo, trait, wish, description, prompt);
     }
+    //constructor for female that extends person
+    
 
     public int totalScore(Person other) {
         return promptsScore(other) + wishScore(other);
