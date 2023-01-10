@@ -5,7 +5,7 @@ public abstract class Person {
     protected Character trait;
     protected WishCharacter wish;
     protected String description;
-    protected String[] prompts;
+    protected String[] prompts = new String[4];
 
     public Person (Account loginInfo, Character trait, WishCharacter wish, String description, String[] prompts) {
         this.loginInfo = loginInfo;
@@ -59,13 +59,16 @@ public abstract class Person {
         return description;
     }
 
-    public String[] setPrompts(String[] prompts) {
-        this.prompts = prompts;
+    public boolean setPrompts(String favMovie, String favSport, String favSeason, String favGenre) {
+        prompts[0] = favMovie;
+        prompts[1] = favSport;
+        prompts[2] = favSeason;
+        prompts[3] = favGenre;
         return prompts;
     }
 
     public boolean equals(Person other) {
-        if (this.loginInfo.getPass() == other.loginInfo.getPass() && this.loginInfo.getUser().equals(other.loginInfo.getUser())) {
+        if (this.loginInfo.getPassword() == other.loginInfo.getPassword() && this.loginInfo.getUsername().equals(other.loginInfo.getUsername())) {
             return true;
         } else {
             return false;
