@@ -18,36 +18,36 @@ public class Account {
         this.password = password; 
     }
 
-    public String getUser() {
+    public String getUsername() {
         return username;
     }
 
-    public String getPass() {
+    public String getPassword() {
         return password;
     }
-    public String getEmail() {
+    public String getEmailAddress() {
         return emailAddress;
     }
 
-    public int getPhoneNum() {
+    public int getPhoneNumber() {
         return phoneNumber;
     }
 
-    public String setUser(String user) {
+    public String setUsername(String user) {
         username = user;
         return username;
     }
 
-    public String setPass(String pass) {
+    public String setPassword(String pass) {
         password = pass;
         return password;
     }
-    public String setEmail(String email) {
+    public String setEmailAddress(String email) {
         emailAddress = email;
         return emailAddress;
     }
 
-    public int setPhoneNum(int num) {
+    public int setPhoneNumber(int num) {
         phoneNumber = num;
         return phoneNumber;
     }
