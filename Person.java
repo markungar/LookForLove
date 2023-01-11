@@ -8,16 +8,16 @@ public abstract class Person {
     protected String[] prompts = new String[4];
     //declares prompt array
 
-    public Person (Account loginInfo, Character trait, WishCharacter wish, String description, String favMovie, String favSport, String favSeason, String favGenre) {
+    public Person (Account loginInfo, Character trait, WishCharacter wish, String description, String[] prompts) {
         this.loginInfo = loginInfo;
         this.trait = trait;
         this.wish = wish;
         this.description = description;
         
-        prompts[0] = favMovie;
-        prompts[1] = favSport;
-        prompts[2] = favSeason;
-        prompts[3] = favGenre;
+        this.prompts[0] = prompts[0];
+        this.prompts[1] = prompts[1];
+        this.prompts[2] = prompts[2];
+        this.prompts[3] = prompts[3];
         //sets the persons prompt answers in correct order
     }
     //constructor for person, initilizing all fields
