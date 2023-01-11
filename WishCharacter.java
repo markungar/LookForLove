@@ -12,12 +12,14 @@ public class WishCharacter extends Character {
         ageMax = max;
     }
 
-    public boolean fit (Character other) {
-        if (this.ageMin > other.getAge() || this.ageMax < other.getAge()) {
-            return false;
+    public int fit (Character other) {
+        if (this.ageMax <= other.getAge()) {
+            return 1;
+        } else if (this.ageMin > other.getAge()){
+            return -1;
         } else {
-            return true;
-        }
+		return 0;
+	}
     }
 
     public int getAgeMax() {
