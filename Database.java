@@ -163,7 +163,7 @@ public class Database {
 		boolean validInfo; // flag for checking if the user's response is valid in a do-while loop.
 
 		String firstName, lastName, gender, emailAddress, username, password, passwordCheck, ethnicity, description;
-		String wishEthnicity, wishSexuality;
+		String wishEthnicity, wishSexuality = "";
 
 		int age = -1, height = -1, phoneNumber = -1;
 		int wishAgeMin = -1, wishAgeMax = -1, wishHeight = -1;
@@ -290,7 +290,7 @@ public class Database {
 	
 				// Asking for the gender.
 				System.out.println("A5. What is your gender? ");
-				System.out.println("Type in:);
+				System.out.println("Type in:");
 	 			System.out.println("  1 for male");
 				System.out.println("  2 for female");
 				System.out.println("  3 for other");
@@ -335,7 +335,7 @@ public class Database {
 	
 			// Asking for the phone number.
 			System.out.println("A7. What is your phone number? ");
-			System.out.println("*Note: Please enter with out any dashes ("-")");
+			System.out.println("*Note: Please enter with out any dashes (\"-\")");
 			System.out.print("Please provide your answer: ");
 
 			try {
@@ -419,7 +419,7 @@ public class Database {
 			try {
 
 				result = sc.nextLine();
-				height = Integer.valueOf(result); Jumps to catch block if !(result instanceof int)
+				height = Integer.valueOf(result); // Jumps to catch block if !(result instanceof int)
 
 			}
 			catch (NumberFormatException nfx) {
@@ -500,7 +500,7 @@ public class Database {
 	
 			// Asking for the preferred gender.
 			System.out.println("B4. Which gender are you attracted to? ");
-			System.out.println("Type in:);
+			System.out.println("Type in:");
  			System.out.println("  1 for male");
 			System.out.println("  2 for female");
 			System.out.println("  3 for other");
@@ -770,7 +770,13 @@ public class Database {
 			trait = new Character(ethnicity, height, age);
 			wish = new WishCharacter(wishAgeMin, wishAgeMax, wishSexuality, wishEthnicity, wishHeight, 0);
 
-			Person person = new Person(loginInfo, trait, wish, prompts, description);
+			if(gender.equals("male")) {
+				Male person = new Male(loginInfo, trait, wish, description, prompts);
+			} else if(gender.equals("female")) {
+				Female person = new Female(loginInfo, trait, wish, description, prompts);
+			} else {
+				Other person = new Other(loginInfo, trait, wish, description, prompts);
+			}
 
 			return true;
 		} 
