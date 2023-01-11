@@ -5,6 +5,10 @@ public abstract class Person {
     protected String description;
     //declares all characteristics of a person, including their account details, trait details, ideal partner details and a brief description of themselves 
     
+	public Person leftChild;
+	public Person rightChild;
+	public Person parent;
+
     protected String[] prompts = new String[4];
     //declares prompt array
 
