@@ -16,6 +16,39 @@ public class DatabaseRunner {
 		System.out.print("Press anything to continue: ");
 		sc.nextLine();
 		
+
+		System.out.println("Log In / Register");
+		System.out.println("-----------------");
+		System.out.println("Press 1 to log in");
+		System.out.println("Press 2 to register");
+		System.out.println("Press 3 to exit");
+		getChoice = sc.nextInt();
+		
+		if (getChoice == 1) {
+			String username, password;
+			
+			System.out.print("Enter your username: ");
+			username = sc.nextLine();
+			
+			System.out.print("Enter your password: ");
+			password = sc.nextLine();
+			
+			loginIn(username, password);
+		} else if (getChoice == 2) {
+			register();
+		} else {
+			System.out.println("Exiting");
+			
+		}
+			
+			
+			System.out.println("User Menu");
+		System.out.println("---------");
+		System.out.println("Press 1 to logout");
+		System.out.println("Press 2 to change your information");
+		System.out.println("Press 3 to see your information");
+		System.out.println("Press 4 to find your next match");
+		getChoice = sc.nextInt();
 		// main
 		// 1. log in
 		// 2. register
