@@ -8,9 +8,11 @@ public class DatabaseRunner {
 
 	public static void main(String args[]) {
 		String username = "", password = "";
-
+		
 		String fileName = "accountInfo.txt";
 		Scanner sc = new Scanner(System.in);
+		
+		
 
 		System.out.println("Welcome to LookForLove where true love finds you!");
 		System.out.println("LookForLove is a dating app. In our app, users will be matched base on their preferences and common interests through our top secret algorithm.");
@@ -22,7 +24,6 @@ public class DatabaseRunner {
 		System.out.println("-----------------");
 		System.out.println("Press 1 to log in");
 		System.out.println("Press 2 to register");
-		System.out.println("Press 3 to exit");
 		getChoice = sc.nextInt();
 		
 		if (getChoice == 1) {
@@ -36,25 +37,27 @@ public class DatabaseRunner {
 			loginIn(username, password);
 		} else if (getChoice == 2) {
 			register();
-		} else {
-			System.out.println("Exiting");
-			
 		}
 			
+	do
+	{
+		getChoice = userMenu();
 
-		userMenu();
 
-
-        if (getChoice == 1) {
-		System.out.println("Logging Out");
-            return;
-        } else if (getChoice == 2) {
-		changeInfo(username);
+        	if (getChoice == 1) {
+			System.out.println("Logging Out");
+            		return;
+        	} else if (getChoice == 2) {
+			changeInfo(username);
 		
-        } else {
-		
-	}	
-    
+			System.out.println("Your information has been altered");
+        	} else if (getChoice == 3) {
+			System.out.println(username);
+		} else {
+			findMatch(username);
+		}
+	}
+	while(getChoice != 1);
 
 
 	// loadFromFile()
