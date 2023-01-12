@@ -294,7 +294,7 @@ public class Database {
 	
 				// Asking for the gender.
 				System.out.println("A5. What is your gender? ");
-				System.out.println("Type in:);
+				System.out.println("Type in:");
 	 			System.out.println("  1 for male");
 				System.out.println("  2 for female");
 				System.out.println("  3 for other");
@@ -423,7 +423,7 @@ public class Database {
 			try {
 
 				result = sc.nextLine();
-				height = Integer.valueOf(result); Jumps to catch block if !(result instanceof int)
+				height = Integer.valueOf(result); // Jumps to catch block if !(result instanceof int)
 
 			}
 			catch (NumberFormatException nfx) {
