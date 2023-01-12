@@ -504,7 +504,7 @@ public class Database {
 	
 			// Asking for the preferred gender.
 			System.out.println("B4. Which gender are you attracted to? ");
-			System.out.println("Type in:);
+			System.out.println("Type in:");
  			System.out.println("  1 for male");
 			System.out.println("  2 for female");
 			System.out.println("  3 for other");
