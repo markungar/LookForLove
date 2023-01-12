@@ -11,12 +11,21 @@ public class DatabaseRunner {
 		String fileName = "accountInfo.txt";
 		Scanner sc = new Scanner(System.in);
 
-		System.out.println("Welcome to LookForLove!");
+		System.out.println("Welcome to LookForLove where true love finds you!");
 		System.out.println("LookForLove is a dating app. In our app, users will be matched base on their preferences and common interests through our top secret algorithm.");
-		System.out.println("Would you like to try it out? Come and register at LookForLove.com!");
 		System.out.print("Press anything to continue: ");
 		sc.nextLine();
-
+		
+		// main
+		// 1. log in
+		// 2. register
+		// 3. exit program
+		
+		// user menu
+		// 1. logout
+		// 2. change information
+		// 3. see information
+		// 4. find match
 	}	
 
 
