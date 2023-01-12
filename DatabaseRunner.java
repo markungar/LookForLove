@@ -7,6 +7,7 @@ import java.lang.*;
 public class DatabaseRunner {
 
 	public static void main(String args[]) {
+		String username = "", password = "";
 
 		String fileName = "accountInfo.txt";
 		Scanner sc = new Scanner(System.in);
@@ -25,7 +26,6 @@ public class DatabaseRunner {
 		getChoice = sc.nextInt();
 		
 		if (getChoice == 1) {
-			String username, password;
 			
 			System.out.print("Enter your username: ");
 			username = sc.nextLine();
@@ -41,25 +41,20 @@ public class DatabaseRunner {
 			
 		}
 			
-			
-			System.out.println("User Menu");
-		System.out.println("---------");
-		System.out.println("Press 1 to logout");
-		System.out.println("Press 2 to change your information");
-		System.out.println("Press 3 to see your information");
-		System.out.println("Press 4 to find your next match");
-		getChoice = sc.nextInt();
-		// main
-		// 1. log in
-		// 2. register
-		// 3. exit program
+
+		userMenu();
+
+
+        if (getChoice == 1) {
+		System.out.println("Logging Out");
+            return;
+        } else if (getChoice == 2) {
+		changeInfo(username);
 		
-		// user menu
-		// 1. logout
-		// 2. change information
-		// 3. see information
-		// 4. find match
+        } else {
+		
 	}	
+    
 
 
 	// loadFromFile()
