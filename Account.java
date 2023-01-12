@@ -64,6 +64,16 @@ public class Account {
         return phoneNumber;
     }
     //all set statements
+    
+    public String setFirstName(String fName) {
+        firstName = fName;
+        return firstName;
+    }
+    
+    public String setLastName(String lName) {
+        lastName = lName;
+        return lastName;
+    }
 
     public String toString() {
         return "Name: " + firstName + " " + lastName + "\nPhone Number: " + phoneNumber + "\nEmail Address: " + emailAddress;
