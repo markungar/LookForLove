@@ -1,9 +1,11 @@
-package LookForLove;
+// package LookForLove;
 
 public class Character {
+
     protected String ethnicity;
     protected int age;
     protected int height;
+    protected String sexuality;
     //initilizes characteristics of a person
 
     public Character (String ethnicity, int age, int height) {
@@ -24,6 +26,10 @@ public class Character {
     public int getHeight() {
         return height;
     }
+
+    public String getSexuality() {
+        return sexuality;
+    }
     //get statements
 
     public int setAge(int age) {
@@ -39,6 +45,10 @@ public class Character {
     public int setHeight(int height) {
         this.height = height;
         return height;
+    }
+
+    public void setSexuality(String sexuality) {
+        this.sexuality = sexuality;
     }
     //all set statements
     

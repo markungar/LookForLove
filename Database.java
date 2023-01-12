@@ -1,8 +1,6 @@
-package LookForLove;
+//package LookForLove;
 
-import java.io.*;
 import java.util.*;
-import java.lang.*;
 
 	// Database.java
 	// -----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -37,7 +35,7 @@ public class Database {
 		this.root.parent = null; // since this is the root, no parent is assigned to this node.
 
 		// add this user to the lookup map, useful when checking if a user exists in the database or checking 
-		loginLookUp = new Map<String, LoginKey>();
+		loginLookUp = new TreeMap<String, LoginKey>();
 		loginLookUp.put(this.root.loginInfo.getUsername(), new LoginKey(this.root.loginInfo.getPassword(), root));
 	
 	}
@@ -167,7 +165,7 @@ public class Database {
 		boolean validInfo; // flag for checking if the user's response is valid in a do-while loop.
 
 		String firstName, lastName, gender, emailAddress, username, password, passwordCheck, ethnicity, description;
-		String wishEthnicity, wishSexuality;
+		String wishEthnicity = "", wishSexuality = "";
 
 		int age = -1, height = -1, phoneNumber = -1;
 		int wishAgeMin = -1, wishAgeMax = -1, wishHeight = -1;
@@ -339,7 +337,7 @@ public class Database {
 	
 			// Asking for the phone number.
 			System.out.println("A7. What is your phone number? ");
-			System.out.println("*Note: Please enter with out any dashes ("-")");
+			System.out.println("*Note: Please enter with out any dashes (\"-\")");
 			System.out.print("Please provide your answer: ");
 
 			try {
@@ -743,9 +741,9 @@ public class Database {
 		System.out.println();
 
 		// Asking for favorite music genre.
-        	System.out.println("C4. What is your favourite music genre?");
-        	System.out.print("Please provide your answer: ");
-        	result = sc.nextLine();
+        System.out.println("C4. What is your favourite music genre?");
+        System.out.print("Please provide your answer: ");
+        result = sc.nextLine();
 
 		// User would like to quit registering.
 		if (result.equals("quit")) {
@@ -774,19 +772,32 @@ public class Database {
 			trait = new Character(ethnicity, height, age);
 			wish = new WishCharacter(wishAgeMin, wishAgeMax, wishSexuality, wishEthnicity, wishHeight, 0);
 
-			Person person = new Person(loginInfo, trait, wish, prompts, description);
+			Person person;
+            if (gender.equals("male")) {
+                    person = new Male(loginInfo, trait, wish, description, prompts);
+            }
+            else if (gender.equals("female")) {
+                    person = new Female(loginInfo, trait, wish, description, prompts);
+            }
+            else {
+                    person = new Other(loginInfo, trait, wish, description, prompts);
+            }
+
 			insert(person);
 			
-			return true;
 		} 
 		catch(Exception e) {
+            sc.close();
 			return false;
 		}
+
+        sc.close();
+		return true;
 
 	} // end register()
 	
 	public LinkedList<PersonScorePair> findMatch(Person user) {
-			findSubsetMatch(user, this.root);
+			return findSubsetMatch(user, this.root);
 	}
 		
 	public LinkedList<PersonScorePair> findSubsetMatch(Person user, Person current) {
@@ -796,7 +807,7 @@ public class Database {
 		WishCharacter wish = user.getWish();
 		WishCharacter currentWish = current.getWish();
 
-		LinkedList<Pair<Person, int>> people = new LinkedList();
+		LinkedList<PersonScorePair> people = new LinkedList<PersonScorePair>();
 
 		if (wish.fit(currentTrait) == -1) {
 			return findSubsetMatch(user, current.rightChild);
@@ -808,7 +819,7 @@ public class Database {
 
 		if (current != null) {
 			people.addAll(findSubsetMatch(user, current.leftChild));
-			if (wish.getSexuality().equals(currentTrait.getGender()) && currentWish.getSexuality().equals(trait.getGender())) {
+			if (wish.getSexuality().equals(currentTrait.getSexuality()) && currentWish.getSexuality().equals(trait.getSexuality())) {
 				people.add(new PersonScorePair(current, user.totalScore(current)));
 			}
 			people.addAll(findSubsetMatch(user, current.rightChild));
@@ -819,8 +830,9 @@ public class Database {
 	
 	public PersonScorePair[] sortMatches(LinkedList<PersonScorePair> list) {
 
-		PersonScorePair[] people = list.toArray();
-		int size = people.size();
+		Object[] buffer = list.toArray();
+        PersonScorePair[] people = Arrays.copyOf(buffer, buffer.length, PersonScorePair[].class);
+		int size = people.length;
 
 		try {
 			for (int i = 0; i < size; i++) {
@@ -831,9 +843,9 @@ public class Database {
 						maxIndex = j;
 					}
 				}
-				Person temp = people[i];
+				PersonScorePair temp = people[i];
 				people[i] = people[maxIndex];
-				people[maxIndex] = i;
+				people[maxIndex] = temp;
 			}
 			return people;
 		}

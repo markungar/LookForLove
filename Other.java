@@ -1,4 +1,4 @@
-package LookForLove;
+//package LookForLove;
 
 public class Other extends Person {
     public Other (Account loginInfo, Character trait, WishCharacter wish, String description, String[] prompt) {
@@ -32,7 +32,7 @@ public class Other extends Person {
 
     public int wishScore(Person other) {
         int score = 0;
-        if (wish.fit(other.trait)) {
+        if (wish.fit(other.trait) == 0) {
             score = score + 11;
         }
         

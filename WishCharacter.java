@@ -1,16 +1,15 @@
-package LookForLove;
+//package LookForLove;
 
 public class WishCharacter extends Character {
     private int ageMin;
     private int ageMax;
-    private String sexuality;
 
-    public WishCharacter(int min, int max, String sexuality,String ethnicity, int height, int age) {
+    public WishCharacter(int min, int max, String sexuality, String ethnicity, int height, int age) {
         super(ethnicity, age, height);
         this.sexuality = sexuality;
         ageMin = min;
         ageMax = max;
-    }
+    } 
 
     public int fit (Character other) {
         if (this.ageMax <= other.getAge()) {
@@ -25,9 +24,15 @@ public class WishCharacter extends Character {
     public int getAgeMax() {
         return ageMax;
     }
+    public void setAgeMax(int ageMax) {
+        this.ageMax = ageMax;
+    }
 
     public int getAgeMin() {
         return ageMin;
+    }
+    public void setAgeMin(int ageMin) {
+        this.ageMin = ageMin;
     }
 
     public String toString() {

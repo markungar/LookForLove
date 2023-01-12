@@ -39,7 +39,7 @@ public abstract class Person {
         return trait;
     }
     
-    public Character getWish() {
+    public WishCharacter getWish() {
         return wish;
     }
 
