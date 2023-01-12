@@ -775,14 +775,15 @@ public class Database {
 			wish = new WishCharacter(wishAgeMin, wishAgeMax, wishSexuality, wishEthnicity, wishHeight, 0);
 
 			Person person = new Person(loginInfo, trait, wish, prompts, description);
-
+			insert(person);
+			
 			return true;
 		} 
 		catch(Exception e) {
 			return false;
 		}
 
-	}
+	} // end register()
 	
 	public LinkedList<PersonScorePair> findMatch(Person user) {
 			findSubsetMatch(user, this.root);
@@ -814,5 +815,32 @@ public class Database {
 		}
 		return people;
 			
-	}
-}
+	} // end findSubsetMatch()
+	
+	public PersonScorePair[] sortMatches(LinkedList<PersonScorePair> list) {
+
+		PersonScorePair[] people = list.toArray();
+		int size = people.size();
+
+		try {
+			for (int i = 0; i < size; i++) {
+			
+				int maxIndex = i;
+				for (int j = i + 1; j < size; j++) {
+					if (people[maxIndex].compareTo(people[j]) == -1) {
+						maxIndex = j;
+					}
+				}
+				Person temp = people[i];
+				people[i] = people[maxIndex];
+				people[maxIndex] = i;
+			}
+			return people;
+		}
+		catch (Exception e) {
+			return null;
+		}
+
+	} // end sortMatches()
+	
+} // end Database
