@@ -782,11 +782,11 @@ public class Database {
 			return false;
 		}
 
-		public LinkedList<Pair<int, Person>> findMatch(Person user) {
+		public LinkedList<PersonScorePair> findMatch(Person user) {
 			findSubsetMatch(user, this.root);
 		}
 		
-		public LinkedList<Pair<int, Person>> findSubsetMatch(Person user, Person current) {
+		public LinkedList<PersonScorePair> findSubsetMatch(Person user, Person current) {
 			
 			Character trait = user.getTrait();
 			Character currentTrait = user.getTrait();
@@ -806,7 +806,7 @@ public class Database {
 			if (current != null) {
 				people.addAll(findSubsetMatch(user, current.leftChild));
 				if (wish.getSexuality().equals(currentTrait.getGender()) && currentWish.getSexuality().equals(trait.getGender())) {
-					people.add(new Pair()<user.totalScore(current), current>);
+					people.add(new PersonScorePair(current, user.totalScore(current)));
 				}
 				people.addAll(findSubsetMatch(user, current.rightChild));
 			}
