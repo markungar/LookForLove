@@ -782,37 +782,37 @@ public class Database {
 			return false;
 		}
 
-		public LinkedList<PersonScorePair> findMatch(Person user) {
+	}
+	
+	public LinkedList<PersonScorePair> findMatch(Person user) {
 			findSubsetMatch(user, this.root);
-		}
+	}
 		
-		public LinkedList<PersonScorePair> findSubsetMatch(Person user, Person current) {
+	public LinkedList<PersonScorePair> findSubsetMatch(Person user, Person current) {
 			
-			Character trait = user.getTrait();
-			Character currentTrait = user.getTrait();
-			WishCharacter wish = user.getWish();
-			WishCharacter currentWish = current.getWish();
+		Character trait = user.getTrait();
+		Character currentTrait = user.getTrait();
+		WishCharacter wish = user.getWish();
+		WishCharacter currentWish = current.getWish();
 
-			LinkedList<Pair<Person, int>> people = new LinkedList();
+		LinkedList<Pair<Person, int>> people = new LinkedList();
 
-			if (wish.fit(currentTrait) == -1) {
-				return findSubsetMatch(user, current.rightChild);
-			}
-
-			else if (wish.fit(currentTrait) == 1) {
-				return findSubsetMatch(user, current.leftChild);
-			}
-
-			if (current != null) {
-				people.addAll(findSubsetMatch(user, current.leftChild));
-				if (wish.getSexuality().equals(currentTrait.getGender()) && currentWish.getSexuality().equals(trait.getGender())) {
-					people.add(new PersonScorePair(current, user.totalScore(current)));
-				}
-				people.addAll(findSubsetMatch(user, current.rightChild));
-			}
-			return people;
-			
+		if (wish.fit(currentTrait) == -1) {
+			return findSubsetMatch(user, current.rightChild);
 		}
 
+		else if (wish.fit(currentTrait) == 1) {
+			return findSubsetMatch(user, current.leftChild);
+		}
+
+		if (current != null) {
+			people.addAll(findSubsetMatch(user, current.leftChild));
+			if (wish.getSexuality().equals(currentTrait.getGender()) && currentWish.getSexuality().equals(trait.getGender())) {
+				people.add(new PersonScorePair(current, user.totalScore(current)));
+			}
+			people.addAll(findSubsetMatch(user, current.rightChild));
+		}
+		return people;
+			
 	}
 }
