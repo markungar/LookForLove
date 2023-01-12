@@ -10,7 +10,7 @@ public class PersonScorePair {
 
 	}
 
-	public boolean compareTo(PersonScorePair other) {
+	public int compareTo(PersonScorePair other) {
 
 		if (this.score < other.score) {
 			return -1;
