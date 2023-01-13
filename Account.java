@@ -3,7 +3,7 @@
 public class Account {
     protected String firstName;
     protected String lastName;
-    protected int phoneNumber;
+    protected long phoneNumber;
     protected String emailAddress;
     //initilizes non sensitive info
     
@@ -11,7 +11,7 @@ public class Account {
     private String password;
     //initilizes sensitive info
     
-    public Account (String firstName, String lastName, int phoneNumber, String emailAddress, String username, String password) {
+    public Account (String firstName, String lastName, long phoneNumber, String emailAddress, String username, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
@@ -40,7 +40,7 @@ public class Account {
         return emailAddress;
     }
 
-    public int getPhoneNumber() {
+    public long getPhoneNumber() {
         return phoneNumber;
     }
     //all get statements
@@ -59,20 +59,17 @@ public class Account {
         return emailAddress;
     }
 
-    public int setPhoneNumber(int num) {
+    public void setPhoneNumber(long num) {
         phoneNumber = num;
-        return phoneNumber;
     }
     //all set statements
     
-    public String setFirstName(String fName) {
+    public void setFirstName(String fName) {
         firstName = fName;
-        return firstName;
     }
     
-    public String setLastName(String lName) {
+    public void setLastName(String lName) {
         lastName = lName;
-        return lastName;
     }
 
     public String toString() {

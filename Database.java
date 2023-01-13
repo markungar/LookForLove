@@ -18,8 +18,8 @@ public class Database {
 
 		// Global fields.
 
-	private Person logInUser; // the current user that's currently logged in the Database, null if no user is logged in.
-	private Person root; // the root of our unbalanced binary tree.
+	public Person logInUser; // the current user that's currently logged in the Database, null if no user is logged in.
+	public Person root; // the root of our unbalanced binary tree.
 	public Map<String, LoginKey> loginLookUp;
 
 
@@ -96,6 +96,7 @@ public class Database {
 			}
 
 			// everything went smoothly, return true.
+			this.loginLookUp.put(newNode.loginInfo.getUsername(), new LoginKey(newNode.loginInfo.getPassword(), newNode));
 			return true;
 
 		} 
@@ -118,7 +119,7 @@ public class Database {
 			System.out.println("Username doesn't exist. Please try again.");
 			return false;
 		}
-		else if (userInfo.getPassword() != password) {
+		else if (!(userInfo.getPassword().equals(password))) {
 			System.out.println("Invalid password. Please try again");
 			return false;
 		}
@@ -143,6 +144,14 @@ public class Database {
 		}
 	}
 
+		// changeInfo()
+		//
+		//
+		//
+	
+	public boolean changeInfo() {
+		return false;
+	}
 		// checkUsernameExist()
 		// ---------------------------------------------------------------------------------------------------------------------------------------------------
 		// Purpose: Checks if a given username exists in the database through our dictionary.
@@ -167,7 +176,8 @@ public class Database {
 		String firstName, lastName, gender, emailAddress, username, password, passwordCheck, ethnicity, description;
 		String wishEthnicity = "", wishSexuality = "";
 
-		int age = -1, height = -1, phoneNumber = -1;
+		int age = -1, height = -1;
+		long phoneNumber = -1;
 		int wishAgeMin = -1, wishAgeMax = -1, wishHeight = -1;
 
 		String[] prompts = new String[4];
@@ -343,7 +353,7 @@ public class Database {
 			try {
 
 				result = sc.nextLine();
-				phoneNumber = Integer.parseInt(result); // if !(result instanceof int), jump to the catch block
+				phoneNumber = Long.parseLong(result); // if !(result instanceof long), jump to the catch block
 				
 			}
 			// user did not enter a number. Repeat the loop.
