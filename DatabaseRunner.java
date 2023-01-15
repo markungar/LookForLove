@@ -1,21 +1,20 @@
 import java.io.*;
 import java.util.*;
-import java.lang.*;
-import java.sql.Savepoint;
 
 public class DatabaseRunner {
 
-	public static void main(String args[]) {		
+	public static void main(String args[]) {
+
 		String username = "", password = "";
-		String s = System.getProperty("user.dir");
 		
 		boolean loggedIn = false;
 
-		String fileName = s + "\\LookForLove\\accountInfo.txt";
+		String fileName = "accountInfo.txt";
 		Scanner sc = new Scanner(System.in);
 
 		Database test = loadFromFile(fileName);
-		System.out.println(test.loginLookUp.size());
+		//System.out.println(test.loginLookUp.size());
+        System.out.println(test.root.getWish().getAgeMin() + ", " + test.root.getWish().getAgeMax());
 
 		System.out.println("Welcome to LookForLove where true love finds you!");
 		System.out.println("LookForLove is a dating app. In our app, users will be matched base on their preferences and common interests through our top secret algorithm.");
@@ -47,8 +46,8 @@ public class DatabaseRunner {
 			while (!loggedIn);
 			
 		} else if (getChoice == 2) {
-			test.register();
-			saveToFile(fileName, test);
+			//test.register();
+			//saveToFile(fileName, test);
 		}
 
 
@@ -79,7 +78,15 @@ public class DatabaseRunner {
 
 				System.out.println("Your information has been altered");
 			} else {
-				test.findMatch(test.logInUser);
+
+                LinkedList<PersonScorePair> unsortedLinkedMatch = test.findMatch(test.root);
+                PersonScorePair[] matches = test.sortMatches(unsortedLinkedMatch);
+
+				for (int i = 0; i < matches.length; i++) {
+                    PersonScorePair match = matches[i];
+                    System.out.println(match.person.getLoginInfo().firstName + "," + match.score);
+
+                }
 				//if any number other than 1, 2 or 3 is entered, our expert and advanced program begins finding a match for you
 			}
 		} while(getChoice != 1);
@@ -125,6 +132,29 @@ public class DatabaseRunner {
 				int height, age, wishHeight, wishAgeMin, wishAgeMax;
 				long phoneNumber;
 
+                // The format goes as follows:
+				// 	Line 1: first name
+				// 	Line 2: last name
+				// 	Line 3: phone number
+				// 	Line 4: email address
+				// 	Line 5: username
+				// 	Line 6: password
+				// 	Line 7: ethnicity
+				// 	Line 8: gender
+				// 	Line 9: age
+                //  Line 10: height
+				// 	Line 11: min. age of choice
+				// 	Line 12: max. age of choice
+				//	Line 13: gender preference of choice
+				// 	Line 14: ethnicity of choice
+				// 	Line 15: height of choice
+                //  Line 16: 0 (useless age attribute)
+				// 	Line 16: answer of prompt #1
+				// 	Line 17: answer of prompt #2
+				// 	Line 18: answer of prompt #3
+				// 	Line 19: answer of prompt #4
+				//	Line 20: description
+
 				// Create loginInfo. Part 1/5.
 				firstName = in.readLine();
 				lastName = in.readLine();
@@ -137,9 +167,9 @@ public class DatabaseRunner {
 				// Create trait. Part 2/5.
 				ethnicity = in.readLine();
 				gender = in.readLine();
+                age = Integer.parseInt(in.readLine());
 				height = Integer.parseInt(in.readLine());
-				age = Integer.parseInt(in.readLine());
-				trait = new Character(ethnicity, height, age);
+				trait = new Character(ethnicity, age, height);
 
 				// Create wish. Part 3/5.
 				wishAgeMin = Integer.parseInt(in.readLine());
@@ -178,7 +208,6 @@ public class DatabaseRunner {
 				} 
 				// If this is not the first loop, just insert person into our tree.
 				else {
-					System.out.println("added");
 					database.insert(person);
 				}
 
@@ -249,19 +278,19 @@ public class DatabaseRunner {
 				// 	Line 5: username
 				// 	Line 6: password
 				// 	Line 7: ethnicity
-				// 	Line 8: height
+				// 	Line 8: gender
 				// 	Line 9: age
-				// 	Line 10: min. age of choice
-				// 	Line 11: max. age of choice
-				//	Line 12: gender preference of choice
-				// 	Line 13: ethnicity of choice
-				// 	Line 14: height of choice
-				// 	Line 15: answer of prompt #1
-				// 	Line 16: answer of prompt #2
-				// 	Line 17: answer of prompt #3
-				// 	Line 18: answer of prompt #4
-				//	Line 19: description
-				//	Line 20: gender of user
+                //  Line 10: height
+				// 	Line 11: min. age of choice
+				// 	Line 12: max. age of choice
+				//	Line 13: gender preference of choice
+				// 	Line 14: ethnicity of choice
+				// 	Line 15: height of choice
+				// 	Line 16: answer of prompt #1
+				// 	Line 17: answer of prompt #2
+				// 	Line 18: answer of prompt #3
+				// 	Line 19: answer of prompt #4
+				//	Line 20: description
 
 				// writing all information from loginInfo to the file.
 				out.write(loginInfo.getFirstName());
@@ -282,10 +311,11 @@ public class DatabaseRunner {
 				out.newLine();
 				out.write(trait.getSexuality());
 				out.newLine();
+                out.write(Integer.toString(trait.getAge()));
+				out.newLine();
 				out.write(Integer.toString(trait.getHeight()));
 				out.newLine();
-				out.write(Integer.toString(trait.getAge()));
-				out.newLine();
+
 
 				// writing all information from wish to the file.
 				out.write(Integer.toString(wish.getAgeMin()));

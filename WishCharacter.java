@@ -1,9 +1,9 @@
 //package LookForLove;
 
 public class WishCharacter extends Character {
+    
     private int ageMin;
     private int ageMax;
-    private String sexuality;
     //declares the minimum age and maximum age someone is willing to date
 
     public WishCharacter(int min, int max, String sexuality, String ethnicity, int height, int age) {
@@ -15,7 +15,7 @@ public class WishCharacter extends Character {
     //Constructs the minimum and maximum age someone is willing to date aswell as the super class and the sexuality that someone needs to have to match
 
     public int fit (Character other) {
-        if (this.ageMax <= other.getAge()) {
+        if (this.ageMax < other.getAge()) {
             return 1;
         } else if (this.ageMin > other.getAge()){
             return -1;

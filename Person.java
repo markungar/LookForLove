@@ -27,7 +27,7 @@ public abstract class Person {
     //constructor for person, initilizing all fields
 
     public String toString() {
-        return loginInfo.toString() + "\n" + trait + "\n" + wish + "\ndescription: " + description + "\nfavMovie: " + prompts[0];
+        return loginInfo + "\n" + trait + "\n" + wish + "\ndescription: " + description + "\nfavMovie: " + prompts[0];
     }
     //to string for trait, wish, description and prompts of specified person
 

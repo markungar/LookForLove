@@ -812,28 +812,31 @@ public class Database {
 		
 	public LinkedList<PersonScorePair> findSubsetMatch(Person user, Person current) {
 			
-		Character trait = user.getTrait();
-		Character currentTrait = user.getTrait();
-		WishCharacter wish = user.getWish();
-		WishCharacter currentWish = current.getWish();
-
 		LinkedList<PersonScorePair> people = new LinkedList<PersonScorePair>();
 
-		if (wish.fit(currentTrait) == -1) {
-			return findSubsetMatch(user, current.rightChild);
-		}
-
-		else if (wish.fit(currentTrait) == 1) {
-			return findSubsetMatch(user, current.leftChild);
-		}
-
 		if (current != null) {
+
+            Character trait = user.getTrait();
+            Character currentTrait = current.getTrait();
+            WishCharacter wish = user.getWish();
+            WishCharacter currentWish = current.getWish();
+
+            if (wish.fit(currentTrait) == -1) {
+                return findSubsetMatch(user, current.rightChild);
+            }
+    
+            if (wish.fit(currentTrait) == 1) {
+                return findSubsetMatch(user, current.leftChild);
+            }
+
 			people.addAll(findSubsetMatch(user, current.leftChild));
-			if (wish.getSexuality().equals(currentTrait.getSexuality()) && currentWish.getSexuality().equals(trait.getSexuality())) {
+			if ((wish.getSexuality().equals(currentTrait.getSexuality()) || wish.getSexuality().equals("all")) && 
+                        (currentWish.getSexuality().equals(trait.getSexuality()) || currentWish.getSexuality().equals("all"))) {
 				people.add(new PersonScorePair(current, user.totalScore(current)));
 			}
 			people.addAll(findSubsetMatch(user, current.rightChild));
 		}
+
 		return people;
 			
 	} // end findSubsetMatch()
