@@ -19,7 +19,7 @@ public class Account {
         this.username = username;
         this.password = password; 
     }
-    //constructor for account
+    //constructor for account. declaring the full name, phone number, email, username and password
 
     public String getUsername() {
         return username;

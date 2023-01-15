@@ -3,6 +3,8 @@
 public class WishCharacter extends Character {
     private int ageMin;
     private int ageMax;
+    private String sexuality;
+    //declares the minimum age and maximum age someone is willing to date
 
     public WishCharacter(int min, int max, String sexuality, String ethnicity, int height, int age) {
         super(ethnicity, age, height);
@@ -10,6 +12,7 @@ public class WishCharacter extends Character {
         ageMin = min;
         ageMax = max;
     } 
+    //Constructs the minimum and maximum age someone is willing to date aswell as the super class and the sexuality that someone needs to have to match
 
     public int fit (Character other) {
         if (this.ageMax <= other.getAge()) {
@@ -17,9 +20,10 @@ public class WishCharacter extends Character {
         } else if (this.ageMin > other.getAge()){
             return -1;
         } else {
-		return 0;
-	}
+		    return 0;
+	    }
     }
+    //checks if someone is not in the age range of the person looking 
 
     public int getAgeMax() {
         return ageMax;
@@ -34,6 +38,7 @@ public class WishCharacter extends Character {
     public void setAgeMin(int ageMin) {
         this.ageMin = ageMin;
     }
+    //get and set statements for age max & age min
 
     public String toString() {
         return "\nage: " + age + "\nethnicity: " + ethnicity + "\nheight: " + height + "wish age range: " + ageMin + " - " + ageMax;

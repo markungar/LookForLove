@@ -7,8 +7,11 @@ public class DatabaseRunner {
 
 	public static void main(String args[]) {		
 		String username = "", password = "";
+		String s = System.getProperty("user.dir");
+		
+		boolean loggedIn = false;
 
-		String fileName = "accountInfo.txt";
+		String fileName = s + "\\LookForLove\\accountInfo.txt";
 		Scanner sc = new Scanner(System.in);
 
 		Database test = loadFromFile(fileName);
@@ -18,6 +21,7 @@ public class DatabaseRunner {
 		System.out.println("LookForLove is a dating app. In our app, users will be matched base on their preferences and common interests through our top secret algorithm.");
 		System.out.print("Press anything to continue: ");
 		sc.nextLine();
+		//Start program header, welcoming users to LookForLove
 
 
 		System.out.println("Log In / Register");
@@ -26,25 +30,46 @@ public class DatabaseRunner {
 		System.out.println("Press 2 to register");
 		int getChoice = sc.nextInt();
 		sc.nextLine();
+		//gets choice if they would like to log in or register
 
 		if (getChoice == 1) {
 
-			System.out.print("Enter your username: ");
-			username = sc.nextLine();
+			do
+			{
+				System.out.print("Enter your username: ");
+				username = sc.nextLine();
 
-			System.out.print("Enter your password: ");
-			password = sc.nextLine();
-
-			test.logIn(username, password);
+				System.out.print("Enter your password: ");
+				password = sc.nextLine();
+				
+				loggedIn = test.logIn(username, password);
+			}
+			while (!loggedIn);
+			
 		} else if (getChoice == 2) {
 			test.register();
 			saveToFile(fileName, test);
 		}
 
+
+
 		do
 		{
-			// getChoice = userMenu();
+			//getChoice = userMenu();
+			
+			System.out.println("\nWelcome " + username);
+			
+			if (getChoice == 1) {
+				System.out.println("Thank you for logging in :)");
+			} else if (getChoice == 2) {
+				System.out.println("Thank you for registering :)");
+			}
+			
+			System.out.println("Press 1 to log out");
+			System.out.println("Press 2 to change your personal information");
+			System.out.println("Press 3 to find your dream partner");
 
+			getChoice = sc.nextInt();
 
 			if (getChoice == 1) {
 				System.out.println("Logging Out");
@@ -53,16 +78,18 @@ public class DatabaseRunner {
 				test.changeInfo();
 
 				System.out.println("Your information has been altered");
-			} else if (getChoice == 3) {
-				System.out.println(username);
 			} else {
 				test.findMatch(test.logInUser);
+				//if any number other than 1, 2 or 3 is entered, our expert and advanced program begins finding a match for you
 			}
 		} while(getChoice != 1);
 
 		
 		saveToFile(fileName, test);
+		sc.close();
 	}
+
+	//opens another menu
 
 	// loadFromFile()
 	// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -162,7 +189,7 @@ public class DatabaseRunner {
 		}
 		// Unsuccessful with the method, return null.
 		catch (IOException iox) {
-			System.out.println("Something went wrong reading from file: " + fileName + "\nPlease try again.");
+			System.out.println("Something went wrong reading from file: " + fileName + "\n" + iox.getMessage());
 			return null;
 		}
 
@@ -306,10 +333,12 @@ public class DatabaseRunner {
 		catch (IOException iox) {
 
 			// something went wrong. Print an error message, close the bufferedReader and return unsuccessful.
-			System.out.println("Something went wrong writing to file: " + fileName + "\nPlease try again.");
+			System.out.println("Something went wrong writing to file: " + fileName + "\n" + iox.getMessage());
 			return false;
 		}
 
 	}
+
+	
 
 }

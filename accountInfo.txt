@@ -1,11 +1,11 @@
-5
+4
 Mark
 Ungar
 4169032833
 mark@gmail.com
 markungar
 cheeseandpotatoes
-caucasian
+white
 male
 18
 186
@@ -33,7 +33,7 @@ male
 50
 70
 female
-caucasian
+white
 130
 0
 pokemon ashes adventures
@@ -47,14 +47,14 @@ Tavar
 dudePlays@gmail.com
 JohnIsI
 Fl#$agrean
-caucasian
+white
 male
 34
 190
 18
 24
 female
-caucasian
+white
 150
 0
 zombieland
@@ -68,7 +68,7 @@ Lawrence
 jessthebest@yahoo.com
 jessthebest
 weLOVEchicken
-caucasian
+white
 female
 28
 149
@@ -82,14 +82,14 @@ frozen
 football
 spring
 pop
-I'm just a small town girl livin in a lonley world :(
+I'm just a small town girl livin in a lonely world :(
 Kalvin
 Lu
 6321029334
 KalvinLikesCats@gmail.com
 kavlinsKool
 threeandfr33
-Asian
+asian
 male
 22
 173

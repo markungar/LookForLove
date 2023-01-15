@@ -379,8 +379,8 @@ public class Database {
 		// A little introduction.
 		System.out.println();
 		System.out.println("Part B. Identity and preferences:");
-		System.out.println("Congradulations! You have finished part 1 of the registering process.");
-		System.out.println("Lucky you, the most boring part is over! Now we get to the more interesting stuff.");
+		System.out.println("Congratulations! You have finished part 1 of the registering process.");
+		System.out.println("Lucky you, the boring part is over! Now we get to the more interesting stuff.");
 		System.out.println("In this section, we will ask a couple more general questions.");
 		System.out.println("Both for yourself, and your ideal partner.");
 		System.out.println();
@@ -406,7 +406,7 @@ public class Database {
 		System.out.println();
 		
 		// Asking which culture that the user is from.
-		System.out.println("B1. Which culture are you from? (IE. African, Asian-American, French, etc..)");
+		System.out.println("B1. Which race are you? (options ~ white, asian, black, latino, other)");
 		System.out.print("Please provide your answer: ");
 		ethnicity = sc.nextLine();
 		

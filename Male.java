@@ -4,10 +4,13 @@ public class Male extends Person {
     public Male (Account loginInfo, Character trait, WishCharacter wish, String description, String[] prompt) {
         super(loginInfo, trait, wish, description, prompt);
     }
+    //Constructor for male extending person
+    //no new variables, just declares super class
 
     public int totalScore(Person other) {
         return promptsScore(other) + wishScore(other);
     }
+    //calculates the total of both prompts score and wish score in order to determine how well two people match with each other
 
     public int promptsScore(Person other) {
         int score = 0;
@@ -29,12 +32,14 @@ public class Male extends Person {
 
         return score;
     }
+    //adds 4 points to the match score if two people have the same favorite prompt answers (for each prompt)
 
     public int wishScore(Person other) {
         int score = 0;
         if (wish.fit(other.trait) == 0) {
             score = score + 8;
         }
+        //adds 8 points to the score if 
         
         if (this.wish.getEthnicity().equals(other.trait.getEthnicity())) {
             score = score + 6;
