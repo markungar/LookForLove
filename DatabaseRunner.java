@@ -10,6 +10,7 @@ public class DatabaseRunner {
 		boolean loggedIn = false;
 
 		String fileName = "accountInfo.txt";
+		
 		Scanner sc = new Scanner(System.in);
 
 		Database test = loadFromFile(fileName);
@@ -46,8 +47,11 @@ public class DatabaseRunner {
 			while (!loggedIn);
 			
 		} else if (getChoice == 2) {
-			//test.register();
-			//saveToFile(fileName, test);
+
+			
+				test.register();
+				saveToFile(fileName, test);
+			
 		}
 
 
