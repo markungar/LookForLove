@@ -7,7 +7,9 @@ public class DatabaseRunner {
 
 		String username = "", password = "";
 		
-		boolean loggedIn = false;
+		boolean loggedIn = false, returnToMenu = false;
+
+		int getChoice = -1;
 
 		String fileName = "accountInfo.txt";
 		
@@ -23,12 +25,13 @@ public class DatabaseRunner {
 		sc.nextLine();
 		//Start program header, welcoming users to LookForLove
 
-
+		do 
+		{
 		System.out.println("Log In / Register");
 		System.out.println("-----------------");
 		System.out.println("Press 1 to log in");
 		System.out.println("Press 2 to register");
-		int getChoice = sc.nextInt();
+		getChoice = sc.nextInt();
 		sc.nextLine();
 		//gets choice if they would like to log in or register
 
@@ -49,10 +52,16 @@ public class DatabaseRunner {
 		} else if (getChoice == 2) {
 
 			
-				test.register();
-				saveToFile(fileName, test);
-			
+				boolean success = test.register();
+
+				if (success) {
+					saveToFile(fileName, test);
+				} else {
+					returnToMenu = true;
+				}
 		}
+		}
+		while (returnToMenu);
 
 
 
