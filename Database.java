@@ -157,6 +157,170 @@ public class Database {
 		//
 	
 	public boolean changeInfo() {
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("\nWhat information would you like to change?");
+		System.out.println("Press 1 to edit account information (Username, Password...");
+		System.out.println("Press 2 to edit your traits");
+		System.out.println("Press 3 to edit your preferences");
+		System.out.println("Press 4 to edit your prompts");
+		System.out.println("Press 5 to edit your description");
+
+		int choice = sc.nextInt();
+
+		if(choice == 1) {
+			System.out.println("\nPress 1 to edit your username"
+					+ "\nPress 2 to edit your password"
+					+ "\nPress 3 to edit first name"
+					+ "\nPress 4 to edit last name"
+					+ "\nPress 5 to edit email"
+					+ "\nPress 6 to edit phone number");
+
+			int secChoice = sc.nextInt();
+
+			if(secChoice == 1) {
+				System.out.print("Enter new username: ");
+				String newUser = sc.nextLine();
+				logInUser.loginInfo.setUsername(newUser);
+			}
+			else if(secChoice == 2) {
+				System.out.print("Enter new password: ");
+				String newPass = sc.nextLine();
+				logInUser.loginInfo.setPassword(newPass);
+			}
+			else if(secChoice == 3) {
+				System.out.print("Enter new first name: ");
+				String newFirst = sc.nextLine();
+				logInUser.loginInfo.setFirstName(newFirst);
+			}
+			else if(secChoice == 4) {
+				System.out.print("Enter new last name: ");
+				String newLast = sc.nextLine();
+				logInUser.loginInfo.setLastName(newLast);
+			}
+			else if(secChoice == 5) {
+				System.out.print("Enter new email: ");
+				String newEmail = sc.nextLine();
+				logInUser.loginInfo.setEmailAddress(newEmail);
+			}
+			else if(secChoice == 6) {
+				long newNumber = -1;
+				do {
+					try {
+						System.out.print("Enter new phone number (without dashes): ");
+						newNumber = sc.nextLong();
+					} catch(Exception e) {
+						System.out.println("Please enter a valid phone number");
+					}
+
+				} while(newNumber == -1);
+
+				logInUser.loginInfo.setPhoneNumber(newNumber);
+			}
+		} else if(choice == 2) {
+			System.out.println("\nPress 1 to edit race"
+					+ "\nPress 2 to edit height"
+					+ "\nPress 3 to edit age");
+
+			int secChoice = sc.nextInt();
+
+			if(secChoice == 1) {
+				System.out.print("Enter new race (options ~ white, asian, black, latino, other): ");
+				String newRace = sc.nextLine();			
+				logInUser.trait.setEthnicity(newRace);
+			} else if(secChoice == 2) {
+				int newHeight = -1;
+				do {
+					try {
+						System.out.print("Enter new height (In centimeters): ");
+						newHeight = sc.nextInt();
+					} catch(Exception e) {
+						System.out.println("Please enter a valid height");
+					}
+
+				} while(newHeight == -1);
+
+				logInUser.trait.setHeight(newHeight);
+			} else if(secChoice == 3) {
+				int newAge = -1;
+				do {
+					try {
+						System.out.print("Enter new age: ");
+						newAge = sc.nextInt();
+					} catch(Exception e) {
+						System.out.println("Please enter a valid age");
+					}
+
+				} while(newAge == -1);
+
+				logInUser.trait.setAge(newAge);
+			}
+		} else if(choice == 3) {
+			System.out.println("\nPress 1 to edit preferred gender"
+					+ "\nPress 2 to edit preferred culture"
+					+ "\nPress 3 to edit preferred height"
+					+ "\nPress 4 to edit minimum age"
+					+ "\nPress 5 to edit maximum age");
+			
+			int secChoice = sc.nextInt();
+			
+			if(secChoice == 1) {
+				String gender = "";
+				do {
+					System.out.print("Enter new preferred gender (male, female, other, all): ");
+					gender = sc.nextLine();
+				} while(!gender.equals("male") || !gender.equals("female") || !gender.equals("other") || !gender.equals("all"));
+				
+				logInUser.wish.setSexuality(gender);
+			} else if(secChoice == 2) {
+				String culture = "";
+				do {
+					System.out.print("Enter new preferred culture (white, asian, black, latino, other): ");
+				} while(!culture.equals("white") || !culture.equals("asian") || !culture.equals("black") || !culture.equals("latino") || !culture.equals("other"));
+				
+				logInUser.wish.setEthnicity(culture);
+			} else if(secChoice == 3) {
+				int height = -1;
+				do {
+					try {
+						System.out.print("Enter new preferred height: ");
+						height = sc.nextInt();
+					} catch(Exception e) {
+						System.out.println("Please enter a valid height");
+					}
+
+				} while(height == -1);
+
+				logInUser.wish.setHeight(height);
+			} else if(secChoice == 4) {
+				int minAge = -1;
+				do {
+					try {
+						System.out.print("Enter new preferred minimum age: ");
+						minAge = sc.nextInt();
+					} catch(Exception e) {
+						System.out.println("Please enter a valid age");
+					}
+
+				} while(minAge == -1);
+
+				logInUser.wish.setAgeMin(minAge);
+			} else if(secChoice == 5) {
+				int maxAge = -1;
+				do {
+					try {
+						System.out.print("Enter new preferred maximum age: ");
+						maxAge = sc.nextInt();
+					} catch(Exception e) {
+						System.out.println("Please enter a valid age");
+					}
+
+				} while(maxAge == -1);
+
+				logInUser.wish.setAgeMax(maxAge);
+			}
+		}
+
 		return false;
 	}
 		// checkUsernameExist()
