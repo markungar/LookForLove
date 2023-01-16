@@ -114,16 +114,21 @@ public class Database {
 
 	public boolean logIn(String username, String password) {
 		
+		// finding the LoginKey for that corresponding username.
 		LoginKey userInfo = loginLookUp.get(username);
+		
+		// no such username was appended to the system.
 		if (userInfo == null) {
 			System.out.println("Username doesn't exist. Please try again.");
 			return false;
 		}
+		// password that the user entered is not the same as the one stored in our system.
 		else if (!(userInfo.getPassword().equals(password))) {
 			System.out.println("Invalid password. Please try again");
 			return false;
 		}
 
+		// successful, change logInUser to the Person that the user requested.
 		logInUser = userInfo.getPerson();
 		return true;
 	
@@ -134,6 +139,8 @@ public class Database {
 		// Purpose: Set logInUser to null; which effectively "logged" the user out of the database.
 
 	public boolean logout() {
+		
+		// change logInUser to point to an empty memory in the computer.
 		try {
 			logInUser = null;
 			return true;
@@ -173,7 +180,7 @@ public class Database {
 		String result = ""; // temporary buffer for user inputs.
 		boolean validInfo; // flag for checking if the user's response is valid in a do-while loop.
 
-		String firstName, lastName, gender, emailAddress, username, password, passwordCheck, ethnicity, description;
+		String firstName = "", lastName = "", gender = "", emailAddress = "", username = "", password = "", passwordCheck = "", ethnicity = "", description = "";
 		String wishEthnicity = "", wishSexuality = "";
 
 		int age = -1, height = -1;
@@ -557,7 +564,7 @@ public class Database {
 		} while (!validInfo);
 
 		// Asking about preferred culture.
-		System.out.println("B5. In which culture do you think your ideal one is most attractive from?");
+		System.out.println("B5. In which culture do you think your ideal one is most attractive from? (options ~ white, asian, black, latino, other)");
 		System.out.print("Please provide your answer: ");
 		wishEthnicity = sc.nextLine();
 		
@@ -751,9 +758,9 @@ public class Database {
 		System.out.println();
 
 		// Asking for favorite music genre.
-        System.out.println("C4. What is your favourite music genre?");
-        System.out.print("Please provide your answer: ");
-        result = sc.nextLine();
+       		System.out.println("C4. What is your favourite music genre?");
+       	 	System.out.print("Please provide your answer: ");
+       	 	result = sc.nextLine();
 
 		// User would like to quit registering.
 		if (result.equals("quit")) {
@@ -783,51 +790,68 @@ public class Database {
 			wish = new WishCharacter(wishAgeMin, wishAgeMax, wishSexuality, wishEthnicity, wishHeight, 0);
 
 			Person person;
-            if (gender.equals("male")) {
-                    person = new Male(loginInfo, trait, wish, description, prompts);
-            }
-            else if (gender.equals("female")) {
-                    person = new Female(loginInfo, trait, wish, description, prompts);
-            }
-            else {
-                    person = new Other(loginInfo, trait, wish, description, prompts);
-            }
+            		if (gender.equals("male")) {
+                    		person = new Male(loginInfo, trait, wish, description, prompts);
+            		}
+            		else if (gender.equals("female")) {
+                   	 	person = new Female(loginInfo, trait, wish, description, prompts);
+            		}
+            		else {
+                    		person = new Other(loginInfo, trait, wish, description, prompts);
+            		}
 
+			// insert the new Person into database's tree.
 			insert(person);
-			
 		} 
 		catch(Exception e) {
-            sc.close();
+		    	sc.close();
 			return false;
 		}
 
-        sc.close();
+       		sc.close();
 		return true;
 
 	} // end register()
 	
+	
+		// findMatch()
+		// ------------------------------------------------------------------------------------------------------------------------------------------------------
+		// Purpose: A wrapper for findSubsetMatch().
+	
 	public LinkedList<PersonScorePair> findMatch(Person user) {
-			return findSubsetMatch(user, this.root);
+		return findSubsetMatch(user, this.root);
 	}
+	
+		// findSubsetMatch()
+		// ------------------------------------------------------------------------------------------------------------------------------------------------------
+		// Purpose: Find all the nodes that matches the conditions listed by user for all nodes that's under (and include this) node in an unsorted linkedlist.
+		//		For each element in the linkedlist has a Person object and a score of the Person when matched with user. Going to use the int later to
+		// 		determine the order of Person to display when we eventually sort the linkedlist.
 		
 	public LinkedList<PersonScorePair> findSubsetMatch(Person user, Person current) {
 			
+		// create an empty linkedlist that we're going to return later (that might ad more elements if we found any matches in the subtree).
 		LinkedList<PersonScorePair> people = new LinkedList<PersonScorePair>();
 
+		// current is a valid Person and not an empty placeholder
 		if (current != null) {
 
-            Character trait = user.getTrait();
-            Character currentTrait = current.getTrait();
-            WishCharacter wish = user.getWish();
-            WishCharacter currentWish = current.getWish();
+			// digging out current's information to gain easier access.
+            		Character trait = user.getTrait();
+            		Character currentTrait = current.getTrait();
+            		WishCharacter wish = user.getWish();
+            		WishCharacter currentWish = current.getWish();
 
-            if (wish.fit(currentTrait) == -1) {
-                return findSubsetMatch(user, current.rightChild);
-            }
+			// wish.fit(currentTrait) returns:
+			// |
+			// 		|
+            		if (wish.fit(currentTrait) == -1) {
+                		return findSubsetMatch(user, current.rightChild);
+            		}
     
-            if (wish.fit(currentTrait) == 1) {
-                return findSubsetMatch(user, current.leftChild);
-            }
+            		if (wish.fit(currentTrait) == 1) {
+                		return findSubsetMatch(user, current.leftChild);
+            		}
 
 			people.addAll(findSubsetMatch(user, current.leftChild));
 			if ((wish.getSexuality().equals(currentTrait.getSexuality()) || wish.getSexuality().equals("all")) && 
@@ -844,7 +868,7 @@ public class Database {
 	public PersonScorePair[] sortMatches(LinkedList<PersonScorePair> list) {
 
 		Object[] buffer = list.toArray();
-        PersonScorePair[] people = Arrays.copyOf(buffer, buffer.length, PersonScorePair[].class);
+        	PersonScorePair[] people = Arrays.copyOf(buffer, buffer.length, PersonScorePair[].class);
 		int size = people.length;
 
 		try {
