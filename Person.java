@@ -53,26 +53,38 @@ public abstract class Person {
     
     //ALL GET METHODS
 
-    public Account setLoginInfo(Account loginInfo) {
+    public void setLoginInfo(Account loginInfo) {
         this.loginInfo = loginInfo;
-        return loginInfo;
     }
 
-    public Character setTrait(Character trait) {
+    public void setTrait(Character trait) {
         this.trait = trait;
-        return trait;
     }
     
-    public WishCharacter setWish(WishCharacter wish) {
+    public void setWish(WishCharacter wish) {
         this.wish = wish;
-        return wish;
     }
 
-    public String setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
-        return description;
     }
 
+    public void setMovie(String movie) {
+    	prompts[0] = movie;
+    }
+    
+    public void setSport(String sport) {
+    	prompts[1] = sport;
+    }
+    
+    public void setSeason(String season) {
+    	prompts[2] = season;
+    }
+    
+    public void setGenre(String genre) {
+    	prompts[3] = genre;
+    }
+    
     //ALL SET METHODS
     
     public boolean setPrompts(String favMovie, String favSport, String favSeason, String favGenre) {
