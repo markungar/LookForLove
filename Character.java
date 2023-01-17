@@ -8,8 +8,9 @@ public class Character {
     protected String sexuality;
     //initilizes characteristics of a person
 
-    public Character (String ethnicity, int age, int height) {
-        this.age = age;
+    public Character (String ethnicity, String sexuality, int age, int height) {
+        this.sexuality = sexuality;
+    	this.age = age;
         this.ethnicity = ethnicity;
         this.height = height;
     }

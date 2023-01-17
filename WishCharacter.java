@@ -7,8 +7,7 @@ public class WishCharacter extends Character {
     //declares the minimum age and maximum age someone is willing to date
 
     public WishCharacter(int min, int max, String sexuality, String ethnicity, int height, int age) {
-        super(ethnicity, age, height);
-        this.sexuality = sexuality;
+        super(ethnicity, sexuality, age, height);
         ageMin = min;
         ageMax = max;
     } 

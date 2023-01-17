@@ -89,7 +89,10 @@ public class DatabaseRunner {
 				return;
 			} else if (getChoice == 2) {
 				test.changeInfo();
-
+				
+				//System.out.println(test.root.getTrait().getSexuality());
+				saveToFile(fileName, test);
+				
 				System.out.println("Your information has been altered");
 			} else {
 
@@ -146,7 +149,7 @@ public class DatabaseRunner {
 				int height, age, wishHeight, wishAgeMin, wishAgeMax;
 				long phoneNumber;
 
-                // The format goes as follows:
+				// The format goes as follows:
 				// 	Line 1: first name
 				// 	Line 2: last name
 				// 	Line 3: phone number
@@ -162,12 +165,12 @@ public class DatabaseRunner {
 				//	Line 13: gender preference of choice
 				// 	Line 14: ethnicity of choice
 				// 	Line 15: height of choice
-                //  Line 16: 0 (useless age attribute)
-				// 	Line 16: answer of prompt #1
-				// 	Line 17: answer of prompt #2
-				// 	Line 18: answer of prompt #3
-				// 	Line 19: answer of prompt #4
-				//	Line 20: description
+				// 	Line 16: Useless age
+				// 	Line 17: answer of prompt #1
+				// 	Line 18: answer of prompt #2
+				// 	Line 19: answer of prompt #3
+				// 	Line 20: answer of prompt #4
+				//	Line 21: description
 
 				// Create loginInfo. Part 1/5.
 				firstName = in.readLine();
@@ -183,7 +186,7 @@ public class DatabaseRunner {
 				gender = in.readLine();
                 age = Integer.parseInt(in.readLine());
 				height = Integer.parseInt(in.readLine());
-				trait = new Character(ethnicity, age, height);
+				trait = new Character(ethnicity, gender, age, height);
 
 				// Create wish. Part 3/5.
 				wishAgeMin = Integer.parseInt(in.readLine());
@@ -300,11 +303,12 @@ public class DatabaseRunner {
 				//	Line 13: gender preference of choice
 				// 	Line 14: ethnicity of choice
 				// 	Line 15: height of choice
-				// 	Line 16: answer of prompt #1
-				// 	Line 17: answer of prompt #2
-				// 	Line 18: answer of prompt #3
-				// 	Line 19: answer of prompt #4
-				//	Line 20: description
+				// 	Line 16: Useless age
+				// 	Line 17: answer of prompt #1
+				// 	Line 18: answer of prompt #2
+				// 	Line 19: answer of prompt #3
+				// 	Line 20: answer of prompt #4
+				//	Line 21: description
 
 				// writing all information from loginInfo to the file.
 				out.write(loginInfo.getFirstName());
@@ -325,7 +329,7 @@ public class DatabaseRunner {
 				out.newLine();
 				out.write(trait.getSexuality());
 				out.newLine();
-                		out.write(Integer.toString(trait.getAge()));
+                out.write(Integer.toString(trait.getAge()));
 				out.newLine();
 				out.write(Integer.toString(trait.getHeight()));
 				out.newLine();
