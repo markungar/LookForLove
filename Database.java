@@ -986,7 +986,7 @@ public class Database {
 		// creating the person.
 		try {
 			loginInfo = new Account(firstName, lastName, phoneNumber, emailAddress, username, password);
-			trait = new Character(ethnicity, height, age);
+			trait = new Character(ethnicity, gender, height, age);
 			wish = new WishCharacter(wishAgeMin, wishAgeMax, wishSexuality, wishEthnicity, wishHeight, 0);
 
 			Person person;
