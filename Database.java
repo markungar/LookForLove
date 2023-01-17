@@ -1016,11 +1016,11 @@ public class Database {
 			insert(person);
 		} 
 		catch(Exception e) {
-		    	sc.close();
+		    	//sc.close();
 			return false;
 		}
 
-       		sc.close();
+       		//sc.close();
 		return true;
 
 	} // end register()
