@@ -27,6 +27,7 @@ public class DatabaseRunner {
 
 		do 
 		{
+			returnToMenu = false;
 		System.out.println("Log In / Register");
 		System.out.println("-----------------");
 		System.out.println("Press 1 to log in");
@@ -324,7 +325,7 @@ public class DatabaseRunner {
 				out.newLine();
 				out.write(trait.getSexuality());
 				out.newLine();
-                out.write(Integer.toString(trait.getAge()));
+                		out.write(Integer.toString(trait.getAge()));
 				out.newLine();
 				out.write(Integer.toString(trait.getHeight()));
 				out.newLine();
