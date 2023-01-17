@@ -156,7 +156,7 @@ public class Database {
 		//
 		//
 	
-	public boolean changeInfo() {
+	public void changeInfo() {
 		Scanner sc = new Scanner(System.in);
 
 		System.out.println("\nWhat information would you like to change?");
@@ -165,6 +165,7 @@ public class Database {
 		System.out.println("Press 3 to edit your preferences");
 		System.out.println("Press 4 to edit your prompts");
 		System.out.println("Press 5 to edit your description");
+		System.out.println("Enter anything else to exit.");
 
 		int choice = sc.nextInt();
 
@@ -319,9 +320,41 @@ public class Database {
 
 				logInUser.wish.setAgeMax(maxAge);
 			}
+		} else if(choice == 4) {
+			System.out.println("\nPress 1 to edit your favourite movie"
+					+ "\nPress 2 to edit your favourite sport"
+					+ "\nPress 3 to edit your favourite season"
+					+ "\nPress 4 to edit your favourite music genre");
+			
+			int secChoice = sc.nextInt();
+			
+			if(secChoice == 1) {
+				System.out.print("Enter new favourite movie: ");
+				String movie = sc.nextLine();
+				
+				logInUser.setMovie(movie);
+			} else if(secChoice == 2) {
+				System.out.print("Enter new favourite sport: ");
+				String sport = sc.nextLine();
+				
+				logInUser.setSport(sport);
+			} else if(secChoice == 3) {
+				System.out.print("Enter new favourite season: ");
+				String season = sc.nextLine();
+				
+				logInUser.setSeason(season);
+			} else if(secChoice == 4) {
+				System.out.print("Enter new favourite music genre: ");
+				String genre = sc.nextLine();
+				
+				logInUser.setGenre(genre);
+			}
+		} else if(choice == 5) {
+			System.out.print("Enter new description: ");
+			String description = sc.nextLine();
+			
+			logInUser.setDescription(description);
 		}
-
-		return false;
 	}
 		// checkUsernameExist()
 		// ---------------------------------------------------------------------------------------------------------------------------------------------------
