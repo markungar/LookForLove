@@ -152,13 +152,15 @@ public class Database {
 	}
 
 		// changeInfo()
-		//
-		//
+		// ------------------------------------------------------------------------------------------------------------------------------------------
+		// Purpose: Allows the logged in user (logInUser) to change any of their information
 		//
 	
 	public void changeInfo() {
 		Scanner sc = new Scanner(System.in);
 
+		// System.out.println("Jess: " + logInUser);
+		// System.out.println(loginLookUp.get(logInUser.loginInfo.getUsername()).getPerson());
 		System.out.println("\nWhat information would you like to change?");
 		System.out.println("Press 1 to edit account information (Username, Password...)");
 		System.out.println("Press 2 to edit your traits");
@@ -169,7 +171,7 @@ public class Database {
 
 		try {
 			int choice = sc.nextInt();
-			
+
 			if(choice == 1) {
 				System.out.println("\nPress 1 to edit your username"
 						+ "\nPress 2 to edit your password"
@@ -179,8 +181,11 @@ public class Database {
 						+ "\nPress 6 to edit phone number");
 
 				int secChoice = sc.nextInt();
+				sc.nextLine();
 
 				if(secChoice == 1) {
+					//loginLookUp.get(logInUser.getUsername());
+
 					System.out.print("Enter new username: ");
 					String newUser = sc.nextLine();
 					logInUser.loginInfo.setUsername(newUser);
@@ -225,6 +230,7 @@ public class Database {
 						+ "\nPress 3 to edit age");
 
 				int secChoice = sc.nextInt();
+				sc.nextLine();
 
 				if(secChoice == 1) {
 					System.out.print("Enter new race (options ~ white, asian, black, latino, other): ");
@@ -263,23 +269,24 @@ public class Database {
 						+ "\nPress 3 to edit preferred height"
 						+ "\nPress 4 to edit minimum age"
 						+ "\nPress 5 to edit maximum age");
-				
+
 				int secChoice = sc.nextInt();
-				
+				sc.nextLine();
+
 				if(secChoice == 1) {
 					String gender = "";
 					do {
 						System.out.print("Enter new preferred gender (male, female, other, all): ");
 						gender = sc.nextLine();
 					} while(!gender.equals("male") || !gender.equals("female") || !gender.equals("other") || !gender.equals("all"));
-					
+
 					logInUser.wish.setSexuality(gender);
 				} else if(secChoice == 2) {
 					String culture = "";
 					do {
 						System.out.print("Enter new preferred culture (white, asian, black, latino, other): ");
 					} while(!culture.equals("white") || !culture.equals("asian") || !culture.equals("black") || !culture.equals("latino") || !culture.equals("other"));
-					
+
 					logInUser.wish.setEthnicity(culture);
 				} else if(secChoice == 3) {
 					int height = -1;
@@ -326,38 +333,43 @@ public class Database {
 						+ "\nPress 2 to edit your favourite sport"
 						+ "\nPress 3 to edit your favourite season"
 						+ "\nPress 4 to edit your favourite music genre");
-				
+
 				int secChoice = sc.nextInt();
-				
+				sc.nextLine();
+
 				if(secChoice == 1) {
 					System.out.print("Enter new favourite movie: ");
 					String movie = sc.nextLine();
-					
+
 					logInUser.setMovie(movie);
 				} else if(secChoice == 2) {
 					System.out.print("Enter new favourite sport: ");
 					String sport = sc.nextLine();
-					
+
 					logInUser.setSport(sport);
 				} else if(secChoice == 3) {
 					System.out.print("Enter new favourite season: ");
 					String season = sc.nextLine();
-					
+
 					logInUser.setSeason(season);
 				} else if(secChoice == 4) {
 					System.out.print("Enter new favourite music genre: ");
 					String genre = sc.nextLine();
-					
+
 					logInUser.setGenre(genre);
 				}
 			} else if(choice == 5) {
+				sc.nextLine();
+
 				System.out.print("Enter new description: ");
 				String description = sc.nextLine();
-				
+
 				logInUser.setDescription(description);
 			}
 		} catch(Exception e) {
 		}
+
+
 	}
 		// checkUsernameExist()
 		// ---------------------------------------------------------------------------------------------------------------------------------------------------
