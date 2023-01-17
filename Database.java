@@ -1043,22 +1043,38 @@ public class Database {
             		WishCharacter currentWish = current.getWish();
 
 			// wish.fit(currentTrait) returns:
-			// |
-			// 		|
+			//
+			//      -1     |     0      |       1   
+			//           AgeMin       AgeMax
+			//
+			// if current.age is smaller than age min, returns -1;
+			// else if current.age is inside [AgeMin, AgeMin] inclusive, returns 0;
+			// else current.age is bigger than ageMax, return 1;
+			
+			// current.age is smaller than age min.
             		if (wish.fit(currentTrait) == -1) {
+				// Check the subtree that has current.rightChild as the root.
                 		return findSubsetMatch(user, current.rightChild);
             		}
-    
-            		if (wish.fit(currentTrait) == 1) {
+    			// current.age is bigger than age max
+            		else if (wish.fit(currentTrait) == 1) {
+				// Check the subtree that has current.leftChild as the root
                 		return findSubsetMatch(user, current.leftChild);
             		}
+			// current is inside [ageMin, ageMax]
+			else {
 
-			people.addAll(findSubsetMatch(user, current.leftChild));
-			if ((wish.getSexuality().equals(currentTrait.getSexuality()) || wish.getSexuality().equals("all")) && 
-                        (currentWish.getSexuality().equals(trait.getSexuality()) || currentWish.getSexuality().equals("all"))) {
-				people.add(new PersonScorePair(current, user.totalScore(current)));
+				// find 
+				people.addAll(findSubsetMatch(user, current.leftChild));
+				if ((wish.getSexuality().equals(currentTrait.getSexuality()) || wish.getSexuality().equals("all")) && 
+                        		(currentWish.getSexuality().equals(trait.getSexuality()) || currentWish.getSexuality().equals("all"))) {
+						
+					people.add(new PersonScorePair(current, user.totalScore(current)));
+					
+				}
+				people.addAll(findSubsetMatch(user, current.rightChild));
+				
 			}
-			people.addAll(findSubsetMatch(user, current.rightChild));
 		}
 
 		return people;
