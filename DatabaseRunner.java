@@ -83,6 +83,7 @@ public class DatabaseRunner {
 			System.out.println("Press 1 to log out");
 			System.out.println("Press 2 to change your personal information");
 			System.out.println("Press 3 to find your dream partner");
+			System.out.println("Press 4 to display your personal information");
 
 			getChoice = sc.nextInt();
 
@@ -96,7 +97,7 @@ public class DatabaseRunner {
 				saveToFile(fileName, test);
 				
 				System.out.println("Your information has been altered");
-			} else {
+			} else if(getChoice == 3) {
 
 				System.out.println("DREAM PARTNERS (and their matching score)");
 				System.out.println("- - - - - - - - - - - - - - - - - - - - -");
@@ -109,6 +110,10 @@ public class DatabaseRunner {
                     System.out.println(match.person.getLoginInfo().firstName + "," + match.score);
 
                 }
+				//if any number other than 1, 2 or 3 is entered, our expert and advanced program begins finding a match for you
+			} else {
+				System.out.println("\n" + test.logInUser.toString());
+			}
 				//if any number other than 1, 2 or 3 is entered, our expert and advanced program begins finding a match for you
 			}
 		} while(getChoice != 1);
