@@ -70,7 +70,7 @@ public class Character {
     //matches the percent of wishes that match another persons traits (0/3, 1/3, 2/3, 3/3)
 
     public String toString() {
-        return "\nYour Age: " + age + "\nYour Ethnicity: " + ethnicity + "\nYour Height: " + height;
+        return "\nage: " + age + "\nethnicity: " + ethnicity + "\nheight: " + height;
     }
     //displays all variables for character
 }

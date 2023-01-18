@@ -107,14 +107,14 @@ public class DatabaseRunner {
 
 				for (int i = 0; i < matches.length; i++) {
                     PersonScorePair match = matches[i];
-                    System.out.println(match.person.getLoginInfo().firstName + "," + match.score);
+                    System.out.println(match.person.getLoginInfo().firstName + " " + match.person.loginInfo.getLastName() + "\nMatch Score: " + match.score);
+                    System.out.println(match.person.getDescription() + "\nAge: " + match.person.trait.getAge() + "\nHeight: " + match.person.trait.getHeight() + "\n");
+                    
 
                 }
 				//if any number other than 1, 2 or 3 is entered, our expert and advanced program begins finding a match for you
 			} else {
 				System.out.println("\n" + test.logInUser.toString());
-			}
-				//if any number other than 1, 2 or 3 is entered, our expert and advanced program begins finding a match for you
 			}
 		} while(getChoice != 1);
 
