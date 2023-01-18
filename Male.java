@@ -39,17 +39,19 @@ public class Male extends Person {
         if (wish.fit(other.trait) == 0) {
             score = score + 8;
         }
-        //adds 8 points to the score if 
+        //adds 8 points to the score if the age is between their min and max
         
         if (this.wish.getEthnicity().equals(other.trait.getEthnicity())) {
             score = score + 6;
         } 
+        //adds 6 points if the matches ethnicity is equal to the users preferred ethnicity
 
         if (this.wish.getHeight() > other.trait.getHeight() - 3 && this.wish.getHeight() < other.trait.getHeight() + 3) {
             score = score + 7;
         } else if (this.wish.getHeight() > other.trait.getHeight() - 3) {
             score = score + 2;
         }
+        //adds 7 points if the person is around their preffered height, and 2 of it's more
 
         return score;
 

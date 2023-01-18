@@ -179,6 +179,7 @@ public class Database {
 						+ "\nPress 4 to edit last name"
 						+ "\nPress 5 to edit email"
 						+ "\nPress 6 to edit phone number");
+						//allows user to chose which detail from their account information they would like to edit
 
 				int secChoice = sc.nextInt();
 				sc.nextLine();
@@ -189,26 +190,31 @@ public class Database {
 					System.out.print("Enter new username: ");
 					String newUser = sc.nextLine();
 					logInUser.loginInfo.setUsername(newUser);
+					//changes & sets new username for new users account 
 				}
 				else if(secChoice == 2) {
 					System.out.print("Enter new password: ");
 					String newPass = sc.nextLine();
 					logInUser.loginInfo.setPassword(newPass);
+					//changes & sets new password for new users account
 				}
 				else if(secChoice == 3) {
 					System.out.print("Enter new first name: ");
 					String newFirst = sc.nextLine();
 					logInUser.loginInfo.setFirstName(newFirst);
+					//changes & sets new first name for new users account
 				}
 				else if(secChoice == 4) {
 					System.out.print("Enter new last name: ");
 					String newLast = sc.nextLine();
 					logInUser.loginInfo.setLastName(newLast);
+					//changes & sets new last name for new users account
 				}
 				else if(secChoice == 5) {
 					System.out.print("Enter new email: ");
 					String newEmail = sc.nextLine();
 					logInUser.loginInfo.setEmailAddress(newEmail);
+					//changes & sets new email for new users account
 				}
 				else if(secChoice == 6) {
 					long newNumber = -1;
@@ -216,13 +222,16 @@ public class Database {
 						try {
 							System.out.print("Enter new phone number (without dashes): ");
 							newNumber = sc.nextLong();
-						} catch(Exception e) {
+							//gets new phone number from user
+						} catch(NumberFormatException e) {
 							System.out.println("Please enter a valid phone number");
 						}
+						//catches if user trys to enter dashes in their phone number
 
 					} while(newNumber == -1);
 
 					logInUser.loginInfo.setPhoneNumber(newNumber);
+					//sets phone number
 				}
 			} else if(choice == 2) {
 				System.out.println("\nPress 1 to edit race"
@@ -231,37 +240,52 @@ public class Database {
 
 				int secChoice = sc.nextInt();
 				sc.nextLine();
+				//allows user to change personal details about themselves
 
 				if(secChoice == 1) {
 					System.out.print("Enter new race (options ~ white, asian, black, latino, other): ");
 					String newRace = sc.nextLine();			
 					logInUser.trait.setEthnicity(newRace);
+					//gets and changes the race they would like to change to
 				} else if(secChoice == 2) {
 					int newHeight = -1;
 					do {
 						try {
 							System.out.print("Enter new height (In centimeters): ");
 							newHeight = sc.nextInt();
-						} catch(Exception e) {
+							//gets users new height and alters their file
+						} catch(NumberFormatException e) {
 							System.out.println("Please enter a valid height");
+							//catches if someone trys to enter a string as the number
 						}
 
 					} while(newHeight == -1);
 
 					logInUser.trait.setHeight(newHeight);
+					//sets height to the new height in the file
 				} else if(secChoice == 3) {
 					int newAge = -1;
 					do {
 						try {
 							System.out.print("Enter new age: ");
-							newAge = sc.nextInt();
+							while (newAge < 18) {
+								newAge = sc.nextInt();
+								//gets new age that the user would like to change to
+								if (newAge < 18) {
+									System.out.println("Enter an age above 18 and try again.");
+									//sends an error message if the user enters an age below 18
+								}
+							}
 						} catch(Exception e) {
 							System.out.println("Please enter a valid age");
+							//catches invalid age
 						}
 
 					} while(newAge == -1);
 
 					logInUser.trait.setAge(newAge);
+					//sets new [valid] age 
+				
 				}
 			} else if(choice == 3) {
 				System.out.println("\nPress 1 to edit preferred gender"
@@ -272,6 +296,7 @@ public class Database {
 
 				int secChoice = sc.nextInt();
 				sc.nextLine();
+				//gets the choice of choice the user would like to change
 
 				if(secChoice == 1) {
 					String gender = "";
@@ -281,6 +306,7 @@ public class Database {
 					} while(!gender.equals("male") && !gender.equals("female") && !gender.equals("other") && !gender.equals("all"));
 				
 					logInUser.wish.setSexuality(gender);
+					//sets the users preferred gender to date
 				} else if(secChoice == 2) {
 					String culture = "";
 					do {
@@ -288,6 +314,7 @@ public class Database {
 					} while(!culture.equals("white") && !culture.equals("asian") && !culture.equals("black") && !culture.equals("latino") && !culture.equals("other"));
 
 					logInUser.wish.setEthnicity(culture);
+					//sets the users preffered dating ethnicity
 				} else if(secChoice == 3) {
 					int height = -1;
 					do {
@@ -301,6 +328,7 @@ public class Database {
 					} while(height == -1);
 
 					logInUser.wish.setHeight(height);
+					//sets users preffered height of partner
 				} else if(secChoice == 4) {
 					int minAge = -1;
 					do {
@@ -314,6 +342,7 @@ public class Database {
 					} while(minAge == -1);
 
 					logInUser.wish.setAgeMin(minAge);
+					//sets users minimum age that they would date
 				} else if(secChoice == 5) {
 					int maxAge = -1;
 					do {
@@ -327,6 +356,7 @@ public class Database {
 					} while(maxAge == -1);
 
 					logInUser.wish.setAgeMax(maxAge);
+					//sets users maximum age they would date
 				}
 			} else if(choice == 4) {
 				System.out.println("\nPress 1 to edit your favourite movie"
@@ -336,27 +366,32 @@ public class Database {
 
 				int secChoice = sc.nextInt();
 				sc.nextLine();
+				//changes users prompts
 
 				if(secChoice == 1) {
 					System.out.print("Enter new favourite movie: ");
 					String movie = sc.nextLine();
 
 					logInUser.setMovie(movie);
+					//sets the users new favorite movie
 				} else if(secChoice == 2) {
 					System.out.print("Enter new favourite sport: ");
 					String sport = sc.nextLine();
 
 					logInUser.setSport(sport);
+					//sets the users new favorite sport
 				} else if(secChoice == 3) {
 					System.out.print("Enter new favourite season: ");
 					String season = sc.nextLine();
 
 					logInUser.setSeason(season);
+					//sets the users new favorite season
 				} else if(secChoice == 4) {
 					System.out.print("Enter new favourite music genre: ");
 					String genre = sc.nextLine();
 
 					logInUser.setGenre(genre);
+					//sets the users new favorite genre
 				}
 			} else if(choice == 5) {
 				sc.nextLine();
@@ -365,6 +400,7 @@ public class Database {
 				String description = sc.nextLine();
 
 				logInUser.setDescription(description);
+				//sets the users description 
 			}
 		} catch(Exception e) {
 		}

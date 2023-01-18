@@ -82,12 +82,13 @@ public class DatabaseRunner {
 			
 			System.out.println("Press 1 to log out");
 			System.out.println("Press 2 to change your personal information");
-			System.out.println("Press 3 to find your dream partner");
-			System.out.println("Press 4 to display your personal information");
+			System.out.println("Press 3 to see your account details");
+			System.out.println("Press 4 to find your dream partner");
 
 			getChoice = sc.nextInt();
 
-			if (getChoice == 1) {
+			if (
+				getChoice == 1) {
 				System.out.println("Logging Out");
 				return;
 			} else if (getChoice == 2) {
@@ -97,24 +98,35 @@ public class DatabaseRunner {
 				saveToFile(fileName, test);
 				
 				System.out.println("Your information has been altered");
-			} else if(getChoice == 3) {
+			} else if (getChoice == 3) {
+				System.out.println(test.logInUser);
+
+			} else {
 
 				System.out.println("DREAM PARTNERS (and their matching score)");
 				System.out.println("- - - - - - - - - - - - - - - - - - - - -");
 
-                LinkedList<PersonScorePair> unsortedLinkedMatch = test.findMatch(test.logInUser);
+                LinkedList<PersonScorePair> unsortedLinkedMatch = test.findMatch(test.root);
                 PersonScorePair[] matches = test.sortMatches(unsortedLinkedMatch);
 
 				for (int i = 0; i < matches.length; i++) {
                     PersonScorePair match = matches[i];
-                    System.out.println(match.person.getLoginInfo().firstName + " " + match.person.loginInfo.getLastName() + "\nMatch Score: " + match.score);
-                    System.out.println(match.person.getDescription() + "\nAge: " + match.person.trait.getAge() + "\nHeight: " + match.person.trait.getHeight() + "\n");
-                    
+
+					String[] personPrompts = new String[4];
+					personPrompts = match.person.getPrompts();
+
+                    System.out.println(match.person.getLoginInfo().firstName + " " + match.person.loginInfo.getLastName() + "\nmatch score: [" + match.score + "]");
+					System.out.println("\nFavorite Movie: " + personPrompts[0] + "\nFavorite Sport: " + personPrompts[1] +"\nFavorite Season: " + personPrompts[2] +"\nFavorite Music Genre: " + personPrompts[3]);
+					System.out.println(match.person.getDescription());
+
+					for (int f = 0; f < match.person.getDescription().length(); f = f+2) {
+						System.out.print("- ");
+					}
+
+					System.out.println();
 
                 }
 				//if any number other than 1, 2 or 3 is entered, our expert and advanced program begins finding a match for you
-			} else {
-				System.out.println("\n" + test.logInUser.toString());
 			}
 		} while(getChoice != 1);
 

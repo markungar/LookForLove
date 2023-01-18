@@ -32,22 +32,26 @@ public class Female extends Person {
 
         return score;
     }
+    //adds 7 to the score for each prompt that matches up with the user
 
     public int wishScore(Person other) {
         int score = 0;
         if (wish.fit(other.trait) == 0) {
             score = score + 5;
         }
+        //adds 5 points to the score if the age is between their min and max
         
         if (this.wish.getEthnicity().equals(other.trait.getEthnicity())) {
             score = score + 3;
         } 
+        //adds 3 points if the ethnicity matches their preffered
 
         if (this.wish.getHeight() > other.trait.getHeight() - 3 && this.wish.getHeight() < other.trait.getHeight() + 3) {
             score = score + 5;
         } else if (this.wish.getHeight() > other.trait.getHeight() - 3) {
             score = score + 3;
         }
+        //adds 5 points if the person is around their preffered height, and 3 of it's more
 
         return score;
 
