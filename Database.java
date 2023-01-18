@@ -2,31 +2,31 @@
 
 import java.util.*;
 
-	// Database.java
-	// -----------------------------------------------------------------------------------------------------------------------------------------------------------
-	// Purpose: 1. Maintains informations of all users through an unbalanced binary tree and a dictionary/map.
-	// 	    2. Execute functions of our app which includes:
-	//                 A. insert(): Insert a new person into the database tree.
-	//                 B. logIn(): Log in with a user. The program then runs user-dependent methods base on this person.
-	//                 c. logOut(): Log the user out of the database.
-	//                 D. checkUsernameExist(): Check if a username is already in use through our dictionary.
-	//                 E. register(): Ask the user a couple of questions 
-	
+// Database.java
+// -----------------------------------------------------------------------------------------------------------------------------------------------------------
+// Purpose: 1. Maintains informations of all users through an unbalanced binary tree and a dictionary/map.
+// 	    2. Execute functions of our app which includes:
+//                 A. insert(): Insert a new person into the database tree.
+//                 B. logIn(): Log in with a user. The program then runs user-dependent methods base on this person.
+//                 c. logOut(): Log the user out of the database.
+//                 D. checkUsernameExist(): Check if a username is already in use through our dictionary.
+//                 E. register(): Ask the user a couple of questions 
+
 
 public class Database {
-	
 
-		// Global fields.
+
+	// Global fields.
 
 	public Person logInUser; // the current user that's currently logged in the Database, null if no user is logged in.
 	public Person root; // the root of our unbalanced binary tree.
 	public Map<String, LoginKey> loginLookUp;
 
 
-		// Database()
-		// ---------------------------------------------------------------------------------------------------------------------------------------------------
-		// Purpose: Initializes a Database with 1 Person in it as the root and set the file that it wants to interact with.
-		// *Note: No user is logged in so logInUseris null.
+	// Database()
+	// ---------------------------------------------------------------------------------------------------------------------------------------------------
+	// Purpose: Initializes a Database with 1 Person in it as the root and set the file that it wants to interact with.
+	// *Note: No user is logged in so logInUseris null.
 
 	public Database(Person root) {
 
@@ -37,13 +37,13 @@ public class Database {
 		// add this user to the lookup map, useful when checking if a user exists in the database or checking 
 		loginLookUp = new TreeMap<String, LoginKey>();
 		loginLookUp.put(this.root.loginInfo.getUsername(), new LoginKey(this.root.loginInfo.getPassword(), root));
-	
+
 	}
 
 
-		// insert()
-		// ---------------------------------------------------------------------------------------------------------------------------------------------------	
-		// Purpose: Wrapper method for the next insert function.
+	// insert()
+	// ---------------------------------------------------------------------------------------------------------------------------------------------------	
+	// Purpose: Wrapper method for the next insert function.
 
 	public boolean insert(Person newNode) {
 		try {
@@ -55,12 +55,12 @@ public class Database {
 	}
 
 
-		// insert()
-		// ---------------------------------------------------------------------------------------------------------------------------------------------------
-		// Purpose: Insert newNode into the binary tree.
-		// 	This method achieves it by recursively comparing newNode to the closest node by their age.
-		// *Note: If the two nodes have equal age, then insert newNode to the left of oldNode.
- 
+	// insert()
+	// ---------------------------------------------------------------------------------------------------------------------------------------------------
+	// Purpose: Insert newNode into the binary tree.
+	// 	This method achieves it by recursively comparing newNode to the closest node by their age.
+	// *Note: If the two nodes have equal age, then insert newNode to the left of oldNode.
+
 	public boolean insert(Person newNode, Person oldNode) {
 
 		try {
@@ -107,16 +107,16 @@ public class Database {
 	}
 
 
-		// logIn()
-		// ---------------------------------------------------------------------------------------------------------------------------------------------------
-		// Purpose: take in a pair of <username, password>.
-		//	check if the username exists. If it does, set the loginUser as the Person corresponding to that username.
+	// logIn()
+	// ---------------------------------------------------------------------------------------------------------------------------------------------------
+	// Purpose: take in a pair of <username, password>.
+	//	check if the username exists. If it does, set the loginUser as the Person corresponding to that username.
 
 	public boolean logIn(String username, String password) {
-		
+
 		// finding the LoginKey for that corresponding username.
 		LoginKey userInfo = loginLookUp.get(username);
-		
+
 		// no such username was appended to the system.
 		if (userInfo == null) {
 			System.out.println("Username doesn't exist. Please try again.");
@@ -131,15 +131,15 @@ public class Database {
 		// successful, change logInUser to the Person that the user requested.
 		logInUser = userInfo.getPerson();
 		return true;
-	
+
 	}
 
-		// logout()
-		// ---------------------------------------------------------------------------------------------------------------------------------------------------
-		// Purpose: Set logInUser to null; which effectively "logged" the user out of the database.
+	// logout()
+	// ---------------------------------------------------------------------------------------------------------------------------------------------------
+	// Purpose: Set logInUser to null; which effectively "logged" the user out of the database.
 
 	public boolean logout() {
-		
+
 		// change logInUser to point to an empty memory in the computer.
 		try {
 			logInUser = null;
@@ -151,11 +151,11 @@ public class Database {
 		}
 	}
 
-		// changeInfo()
-		// ------------------------------------------------------------------------------------------------------------------------------------------
-		// Purpose: Allows the logged in user (logInUser) to change any of their information
-		//
-	
+	// changeInfo()
+	// ------------------------------------------------------------------------------------------------------------------------------------------
+	// Purpose: Allows the logged in user (logInUser) to change any of their information
+	//
+
 	public void changeInfo() {
 		Scanner sc = new Scanner(System.in);
 
@@ -189,31 +189,26 @@ public class Database {
 					System.out.print("Enter new username: ");
 					String newUser = sc.nextLine();
 					logInUser.loginInfo.setUsername(newUser);
-					return;
 				}
 				else if(secChoice == 2) {
 					System.out.print("Enter new password: ");
 					String newPass = sc.nextLine();
 					logInUser.loginInfo.setPassword(newPass);
-					return;
 				}
 				else if(secChoice == 3) {
 					System.out.print("Enter new first name: ");
 					String newFirst = sc.nextLine();
 					logInUser.loginInfo.setFirstName(newFirst);
-					return;
 				}
 				else if(secChoice == 4) {
 					System.out.print("Enter new last name: ");
 					String newLast = sc.nextLine();
 					logInUser.loginInfo.setLastName(newLast);
-					return;
 				}
 				else if(secChoice == 5) {
 					System.out.print("Enter new email: ");
 					String newEmail = sc.nextLine();
 					logInUser.loginInfo.setEmailAddress(newEmail);
-					return;
 				}
 				else if(secChoice == 6) {
 					long newNumber = -1;
@@ -228,7 +223,6 @@ public class Database {
 					} while(newNumber == -1);
 
 					logInUser.loginInfo.setPhoneNumber(newNumber);
-					return;
 				}
 			} else if(choice == 2) {
 				System.out.println("\nPress 1 to edit race"
@@ -242,7 +236,6 @@ public class Database {
 					System.out.print("Enter new race (options ~ white, asian, black, latino, other): ");
 					String newRace = sc.nextLine();			
 					logInUser.trait.setEthnicity(newRace);
-					return;
 				} else if(secChoice == 2) {
 					int newHeight = -1;
 					do {
@@ -256,7 +249,6 @@ public class Database {
 					} while(newHeight == -1);
 
 					logInUser.trait.setHeight(newHeight);
-					return;
 				} else if(secChoice == 3) {
 					int newAge = -1;
 					do {
@@ -270,7 +262,6 @@ public class Database {
 					} while(newAge == -1);
 
 					logInUser.trait.setAge(newAge);
-					return;
 				}
 			} else if(choice == 3) {
 				System.out.println("\nPress 1 to edit preferred gender"
@@ -287,18 +278,16 @@ public class Database {
 					do {
 						System.out.print("Enter new preferred gender (male, female, other, all): ");
 						gender = sc.nextLine();
-					} while(!gender.equals("male") || !gender.equals("female") || !gender.equals("other") || !gender.equals("all"));
-
+					} while(!gender.equals("male") && !gender.equals("female") && !gender.equals("other") && !gender.equals("all"));
+				
 					logInUser.wish.setSexuality(gender);
-					return;
 				} else if(secChoice == 2) {
 					String culture = "";
 					do {
 						System.out.print("Enter new preferred culture (white, asian, black, latino, other): ");
-					} while(!culture.equals("white") || !culture.equals("asian") || !culture.equals("black") || !culture.equals("latino") || !culture.equals("other"));
+					} while(!culture.equals("white") && !culture.equals("asian") && !culture.equals("black") && !culture.equals("latino") && !culture.equals("other"));
 
 					logInUser.wish.setEthnicity(culture);
-					return;
 				} else if(secChoice == 3) {
 					int height = -1;
 					do {
@@ -312,7 +301,6 @@ public class Database {
 					} while(height == -1);
 
 					logInUser.wish.setHeight(height);
-					return;
 				} else if(secChoice == 4) {
 					int minAge = -1;
 					do {
@@ -326,7 +314,6 @@ public class Database {
 					} while(minAge == -1);
 
 					logInUser.wish.setAgeMin(minAge);
-					return;
 				} else if(secChoice == 5) {
 					int maxAge = -1;
 					do {
@@ -340,7 +327,6 @@ public class Database {
 					} while(maxAge == -1);
 
 					logInUser.wish.setAgeMax(maxAge);
-					return;
 				}
 			} else if(choice == 4) {
 				System.out.println("\nPress 1 to edit your favourite movie"
@@ -350,32 +336,27 @@ public class Database {
 
 				int secChoice = sc.nextInt();
 				sc.nextLine();
-				
 
 				if(secChoice == 1) {
 					System.out.print("Enter new favourite movie: ");
 					String movie = sc.nextLine();
 
 					logInUser.setMovie(movie);
-					return;
 				} else if(secChoice == 2) {
 					System.out.print("Enter new favourite sport: ");
 					String sport = sc.nextLine();
 
 					logInUser.setSport(sport);
-					return;
 				} else if(secChoice == 3) {
 					System.out.print("Enter new favourite season: ");
 					String season = sc.nextLine();
 
 					logInUser.setSeason(season);
-					return;
 				} else if(secChoice == 4) {
 					System.out.print("Enter new favourite music genre: ");
 					String genre = sc.nextLine();
 
 					logInUser.setGenre(genre);
-					return;
 				}
 			} else if(choice == 5) {
 				sc.nextLine();
@@ -384,29 +365,28 @@ public class Database {
 				String description = sc.nextLine();
 
 				logInUser.setDescription(description);
-				return;
 			}
 		} catch(Exception e) {
 		}
 
 
 	}
-		// checkUsernameExist()
-		// ---------------------------------------------------------------------------------------------------------------------------------------------------
-		// Purpose: Checks if a given username exists in the database through our dictionary.
-		//	Useful when registering a new user because we don't want to have duplicate usernames.
+	// checkUsernameExist()
+	// ---------------------------------------------------------------------------------------------------------------------------------------------------
+	// Purpose: Checks if a given username exists in the database through our dictionary.
+	//	Useful when registering a new user because we don't want to have duplicate usernames.
 
 	public boolean checkUsernameExist(String username) {
 		return loginLookUp.containsKey(username); 
 	}
 
-		// Register()
-		// ---------------------------------------------------------------------------------------------------------------------------------------------------
-		// Purpose: Asks the user a bunch of questions and combining them into an instance of Person, and then inserting the Person into our database.
+	// Register()
+	// ---------------------------------------------------------------------------------------------------------------------------------------------------
+	// Purpose: Asks the user a bunch of questions and combining them into an instance of Person, and then inserting the Person into our database.
 
 	public boolean register() {
 
-			// Global fields necessary to create an instance of Person
+		// Global fields necessary to create an instance of Person
 
 		Scanner sc = new Scanner(System.in);
 		String result = ""; // temporary buffer for user inputs.
@@ -425,8 +405,8 @@ public class Database {
 		WishCharacter wish;
 
 
-			// The registering process.
-			// Split in four parts: A. loginInfo, B. trait & wish, C. prompts, D. description.
+		// The registering process.
+		// Split in four parts: A. loginInfo, B. trait & wish, C. prompts, D. description.
 
 
 		// A brief introduction for the user.
@@ -436,8 +416,8 @@ public class Database {
 		System.out.println("If you would like to cancel the registering process, simply type in \"quit\" as a question's answer.");
 		System.out.println("Hop on the LookForLove train, and have fun!");
 
-		
-			// Part A. loginInfo
+
+		// Part A. loginInfo
 
 
 		System.out.println();	
@@ -461,7 +441,7 @@ public class Database {
 			if (username.equals("quit")) {
 				return false;
 			}
-		
+
 			// check if the username is taken. If so, output error message and prompt the user to try again.
 			boolean usernameTaken = checkUsernameExist(username);
 			if (usernameTaken) {
@@ -469,7 +449,7 @@ public class Database {
 				System.out.println("Username is already taken.");
 				validInfo = false;
 			}
-			
+
 		} while (!validInfo);
 
 		do {
@@ -477,7 +457,7 @@ public class Database {
 			// reset the loop
 			validInfo = true;
 			System.out.println();
-			
+
 			// Asking about the password.
 			System.out.println("A2. What would be your password when logging into LookForLove? ");
 			System.out.print("Please provide your answer: ");
@@ -505,7 +485,7 @@ public class Database {
 				System.out.println("The password and confirmation does not match each other.");
 				validInfo = false;
 			}
-		
+
 		} while (!validInfo);
 
 		try {
@@ -538,11 +518,11 @@ public class Database {
 				// Reset the loop.
 				validInfo = true;
 				System.out.println();
-	
+
 				// Asking for the gender.
 				System.out.println("A5. What is your gender? ");
 				System.out.println("Type in:");
-	 			System.out.println("  1 for male");
+				System.out.println("  1 for male");
 				System.out.println("  2 for female");
 				System.out.println("  3 for other");
 				gender = sc.nextLine();
@@ -583,7 +563,7 @@ public class Database {
 			// Reset the loop
 			validInfo = true;
 			System.out.println();
-	
+
 			// Asking for the phone number.
 			System.out.println("A7. What is your phone number? ");
 			System.out.println("*Note: Please enter with out any dashes (\"-\")");
@@ -593,7 +573,7 @@ public class Database {
 
 				result = sc.nextLine();
 				phoneNumber = Long.parseLong(result); // if !(result instanceof long), jump to the catch block
-				
+
 			}
 			// user did not enter a number. Repeat the loop.
 			catch (NumberFormatException nfx) {
@@ -613,7 +593,7 @@ public class Database {
 		} while (!validInfo);
 
 
-			// Part B. trait & wish
+		// Part B. trait & wish
 
 		// A little introduction.
 		System.out.println();
@@ -629,7 +609,7 @@ public class Database {
 		System.out.println();
 		System.out.println("Ready?");
 		System.out.println("Enter (\"Yes\") or (\"No\"):");
-		
+
 		// Making sure that the user understand what they're doing next.
 		String ready = sc.nextLine();
 		if (!ready.equalsIgnoreCase("yes")) {
@@ -643,12 +623,12 @@ public class Database {
 		}
 
 		System.out.println();
-		
+
 		// Asking which culture that the user is from.
 		System.out.println("B1. Which race are you? (options ~ white, asian, black, latino, other)");
 		System.out.print("Please provide your answer: ");
 		ethnicity = sc.nextLine();
-		
+
 		// User wants to quit registering.
 		if (ethnicity.equalsIgnoreCase("quit")) {
 			return false;
@@ -663,7 +643,7 @@ public class Database {
 			// Reset the loop
 			validInfo = true;
 			System.out.println();
-	
+
 			// Asking for the height.
 			System.out.println("B2. What is your height? (In centimeters)");
 			System.out.print("Please provide your answer: ");
@@ -699,7 +679,7 @@ public class Database {
 			// reset the loop
 			validInfo = true;
 			System.out.println();
-	
+
 			// Asking about the age.
 			System.out.println("B3. What is your age? ");
 			System.out.println("*Note: This question is mandatory.");
@@ -748,11 +728,11 @@ public class Database {
 			// Reset the loop
 			validInfo = true;
 			System.out.println();	
-	
+
 			// Asking for the preferred gender.
 			System.out.println("B4. Which gender are you attracted to? ");
 			System.out.println("Type in:");
- 			System.out.println("  1 for male");
+			System.out.println("  1 for male");
 			System.out.println("  2 for female");
 			System.out.println("  3 for other");
 			System.out.println("  4 if you do not have a preference when it comes to gender of your other half");
@@ -799,7 +779,7 @@ public class Database {
 		System.out.println("B5. In which culture do you think your ideal one is most attractive from? (options ~ white, asian, black, latino, other)");
 		System.out.print("Please provide your answer: ");
 		wishEthnicity = sc.nextLine();
-		
+
 		// User wants to quit registering.
 		if (wishEthnicity.equalsIgnoreCase("quit")) {
 			return false;
@@ -810,11 +790,11 @@ public class Database {
 		}
 
 		do {
-		
+
 			// Reset the loop.
 			validInfo = true;
 			System.out.println();
-			
+
 			// Asking about preferred height.
 			System.out.println("B6. What would be the preferrable height that you wish your partner have? ");
 			System.out.print("Please provide your answer: ");
@@ -842,16 +822,16 @@ public class Database {
 					validInfo = false;
 				}
 			}			
-					
+
 
 		} while (!validInfo);
 
 		do {
-		
+
 			// reset the loop
 			validInfo = true;
 			System.out.println();
-			
+
 			// Asking about min. preferred age.
 			System.out.println("B7. What would be the youngest age that you wish your partner is? ");
 			System.out.print("Please provide your answer: ");
@@ -861,7 +841,7 @@ public class Database {
 			}
 			// User entered invalid input. Repeat the loop
 			catch (NumberFormatException nfx) {
-				
+
 				// User wants to quit registering.
 				if (result.equals("quit")) {
 					return false;
@@ -878,16 +858,16 @@ public class Database {
 					validInfo = false;
 				}
 			}			
-					
+
 
 		} while (!validInfo);
 
 		do {
-		
+
 			// Reset the loop
 			validInfo = true;
 			System.out.println();
-			
+
 			// Asking for the oldest preferred age.
 			System.out.println("B8. What would be the oldest age that you wish your partner is? ");
 			System.out.print("Please provide your answer: ");
@@ -899,7 +879,7 @@ public class Database {
 			}
 			// User entered invalid input. Repeat the loop.
 			catch (NumberFormatException nfx) {
-				
+
 				// User wants to quit registering.
 				if (result.equals("quit")) {
 					return false;
@@ -916,26 +896,26 @@ public class Database {
 					validInfo = false;
 				}
 			}			
-					
+
 
 		} while (!validInfo);
 
 
-			// Part C. Prompt questions
+		// Part C. Prompt questions
 
 
 		// A little introduction.
 		System.out.println();
-       		System.out.println("Part C. Prompts");
-        	System.out.println("For this part, we ask more questions about yourself;");
+		System.out.println("Part C. Prompts");
+		System.out.println("For this part, we ask more questions about yourself;");
 		System.out.println("In this part, the answers will match you with other people with similar interests as you!");
 
 		System.out.println();
 
 		// Asking about the favorite movie.
-        	System.out.println("C1. What is your favourite movie?");
-        	System.out.print("Please provide your answer: ");
-        	result = sc.nextLine();
+		System.out.println("C1. What is your favourite movie?");
+		System.out.print("Please provide your answer: ");
+		result = sc.nextLine();
 
 		// User would like to quit registering.
 		if (result.equals("quit")) {
@@ -948,13 +928,13 @@ public class Database {
 		else {
 			prompts[0] = result;
 		}
-		
+
 		System.out.println();
 
 		// Asking for favorite sport.
-       	 	System.out.println("C2. What is your favourite sport?");
-        	System.out.print("Please provide your answer: ");
-        	result = sc.nextLine();
+		System.out.println("C2. What is your favourite sport?");
+		System.out.print("Please provide your answer: ");
+		result = sc.nextLine();
 
 		// User would like to quit registering.
 		if (result.equals("quit")) {
@@ -971,9 +951,9 @@ public class Database {
 		System.out.println();
 
 		// Asking for favorite season.
-        	System.out.println("C3. What is your favourite season?");
-        	System.out.print("Please provide your answer: ");
-        	result = sc.nextLine();
+		System.out.println("C3. What is your favourite season?");
+		System.out.print("Please provide your answer: ");
+		result = sc.nextLine();
 
 		// User would like to quit registering.
 		if (result.equals("quit")) {
@@ -990,9 +970,9 @@ public class Database {
 		System.out.println();
 
 		// Asking for favorite music genre.
-       		System.out.println("C4. What is your favourite music genre?");
-       	 	System.out.print("Please provide your answer: ");
-       	 	result = sc.nextLine();
+		System.out.println("C4. What is your favourite music genre?");
+		System.out.print("Please provide your answer: ");
+		result = sc.nextLine();
 
 		// User would like to quit registering.
 		if (result.equals("quit")) {
@@ -1022,46 +1002,44 @@ public class Database {
 			wish = new WishCharacter(wishAgeMin, wishAgeMax, wishSexuality, wishEthnicity, wishHeight, 0);
 
 			Person person;
-            		if (gender.equals("male")) {
-                    		person = new Male(loginInfo, trait, wish, description, prompts);
-            		}
-            		else if (gender.equals("female")) {
-                   	 	person = new Female(loginInfo, trait, wish, description, prompts);
-            		}
-            		else {
-                    		person = new Other(loginInfo, trait, wish, description, prompts);
-            		}
+			if (gender.equals("male")) {
+				person = new Male(loginInfo, trait, wish, description, prompts);
+			}
+			else if (gender.equals("female")) {
+				person = new Female(loginInfo, trait, wish, description, prompts);
+			}
+			else {
+				person = new Other(loginInfo, trait, wish, description, prompts);
+			}
 
 			// insert the new Person into database's tree.
 			insert(person);
+			logInUser = person;
 		} 
 		catch(Exception e) {
-		    	//sc.close();
 			return false;
 		}
-
-       		//sc.close();
 		return true;
 
 	} // end register()
-	
-	
-		// findMatch()
-		// ------------------------------------------------------------------------------------------------------------------------------------------------------
-		// Purpose: A wrapper for findSubsetMatch().
-	
+
+
+	// findMatch()
+	// ------------------------------------------------------------------------------------------------------------------------------------------------------
+	// Purpose: A wrapper for findSubsetMatch().
+
 	public LinkedList<PersonScorePair> findMatch(Person user) {
 		return findSubsetMatch(user, this.root);
 	}
-	
-		// findSubsetMatch()
-		// ------------------------------------------------------------------------------------------------------------------------------------------------------
-		// Purpose: Find all the nodes that matches the conditions listed by user for all nodes that's under (and include this) node in an unsorted linkedlist.
-		//		For each element in the linkedlist has a Person object and a score of the Person when matched with user. Going to use the int later to
-		// 		determine the order of Person to display when we eventually sort the linkedlist.
-		
+
+	// findSubsetMatch()
+	// ------------------------------------------------------------------------------------------------------------------------------------------------------
+	// Purpose: Find all the nodes that matches the conditions listed by user for all nodes that's under (and include this) node in an unsorted linkedlist.
+	//		For each element in the linkedlist has a Person object and a score of the Person when matched with user. Going to use the int later to
+	// 		determine the order of Person to display when we eventually sort the linkedlist.
+
 	public LinkedList<PersonScorePair> findSubsetMatch(Person user, Person current) {
-			
+
 		// create an empty linkedlist that we're going to return later (that might ad more elements if we found any matches in the subtree).
 		LinkedList<PersonScorePair> people = new LinkedList<PersonScorePair>();
 
@@ -1069,59 +1047,43 @@ public class Database {
 		if (current != null) {
 
 			// digging out current's information to gain easier access.
-            		Character trait = user.getTrait();
-            		Character currentTrait = current.getTrait();
-            		WishCharacter wish = user.getWish();
-            		WishCharacter currentWish = current.getWish();
+			Character trait = user.getTrait();
+			Character currentTrait = current.getTrait();
+			WishCharacter wish = user.getWish();
+			WishCharacter currentWish = current.getWish();
 
 			// wish.fit(currentTrait) returns:
-			//
-			//      -1     |     0      |       1   
-			//           AgeMin       AgeMax
-			//
-			// if current.age is smaller than age min, returns -1;
-			// else if current.age is inside [AgeMin, AgeMin] inclusive, returns 0;
-			// else current.age is bigger than ageMax, return 1;
-			
-			// current.age is smaller than age min.
-            		if (wish.fit(currentTrait) == -1) {
-				// Check the subtree that has current.rightChild as the root.
-                		return findSubsetMatch(user, current.rightChild);
-            		}
-    			// current.age is bigger than age max
-            		else if (wish.fit(currentTrait) == 1) {
-				// Check the subtree that has current.leftChild as the root
-                		return findSubsetMatch(user, current.leftChild);
-            		}
-			// current is inside [ageMin, ageMax]
-			else {
-
-				// find 
-				people.addAll(findSubsetMatch(user, current.leftChild));
-				if ((wish.getSexuality().equals(currentTrait.getSexuality()) || wish.getSexuality().equals("all")) && 
-                        		(currentWish.getSexuality().equals(trait.getSexuality()) || currentWish.getSexuality().equals("all"))) {
-						
-					people.add(new PersonScorePair(current, user.totalScore(current)));
-					
-				}
-				people.addAll(findSubsetMatch(user, current.rightChild));
-				
+			// |
+			// 		|
+			if (wish.fit(currentTrait) == -1) {
+				return findSubsetMatch(user, current.rightChild);
 			}
+
+			if (wish.fit(currentTrait) == 1) {
+				return findSubsetMatch(user, current.leftChild);
+			}
+
+			people.addAll(findSubsetMatch(user, current.leftChild));
+			if ((wish.getSexuality().equals(currentTrait.getSexuality()) || wish.getSexuality().equals("all")) && 
+					(currentWish.getSexuality().equals(trait.getSexuality()) || currentWish.getSexuality().equals("all"))) {
+				people.add(new PersonScorePair(current, user.totalScore(current)));
+			}
+			people.addAll(findSubsetMatch(user, current.rightChild));
 		}
 
 		return people;
-			
+
 	} // end findSubsetMatch()
-	
+
 	public PersonScorePair[] sortMatches(LinkedList<PersonScorePair> list) {
 
 		Object[] buffer = list.toArray();
-        	PersonScorePair[] people = Arrays.copyOf(buffer, buffer.length, PersonScorePair[].class);
+		PersonScorePair[] people = Arrays.copyOf(buffer, buffer.length, PersonScorePair[].class);
 		int size = people.length;
 
 		try {
 			for (int i = 0; i < size; i++) {
-			
+
 				int maxIndex = i;
 				for (int j = i + 1; j < size; j++) {
 					if (people[maxIndex].compareTo(people[j]) == -1) {
@@ -1139,5 +1101,5 @@ public class Database {
 		}
 
 	} // end sortMatches()
-	
+
 } // end Database
