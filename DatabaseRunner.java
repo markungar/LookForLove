@@ -6,12 +6,14 @@ public class DatabaseRunner {
 	public static void main(String args[]) {
 
 		String username = "", password = "";
+		//initializes log in details
 		
 		boolean loggedIn = false, returnToMenu = false;
 
 		int getChoice = -1;
 
 		String fileName = "accountInfo.txt";
+		//sets the name for the file in which names are stored 
 		
 		Scanner sc = new Scanner(System.in);
 
@@ -45,8 +47,10 @@ public class DatabaseRunner {
 
 				System.out.print("Enter your password: ");
 				password = sc.nextLine();
+				//gets user name and password from user
 				
 				loggedIn = test.logIn(username, password);
+				//checks to see if the username matches an existing account aswell as if the password matches the specified account
 			}
 			while (!loggedIn);
 			
@@ -64,19 +68,17 @@ public class DatabaseRunner {
 		}
 		while (returnToMenu);
 
-
+		if (getChoice == 1) {
+			System.out.println("Thank you for logging in :)\n");
+		} else if (getChoice == 2) {
+			System.out.println("Thank you for registering :)\n");
+		}
 
 		do
 		{
 			//getChoice = userMenu();
 			
 			System.out.println("\nWelcome " + username);
-			
-			if (getChoice == 1) {
-				System.out.println("Thank you for logging in :)");
-			} else if (getChoice == 2) {
-				System.out.println("Thank you for registering :)");
-			}
 			
 			System.out.println("Press 1 to log out");
 			System.out.println("Press 2 to change your personal information");
@@ -95,6 +97,9 @@ public class DatabaseRunner {
 				
 				System.out.println("Your information has been altered");
 			} else {
+
+				System.out.println("DREAM PARTNERS (and their matching score)");
+				System.out.println("- - - - - - - - - - - - - - - - - - - - -");
 
                 LinkedList<PersonScorePair> unsortedLinkedMatch = test.findMatch(test.root);
                 PersonScorePair[] matches = test.sortMatches(unsortedLinkedMatch);

@@ -189,26 +189,31 @@ public class Database {
 					System.out.print("Enter new username: ");
 					String newUser = sc.nextLine();
 					logInUser.loginInfo.setUsername(newUser);
+					return;
 				}
 				else if(secChoice == 2) {
 					System.out.print("Enter new password: ");
 					String newPass = sc.nextLine();
 					logInUser.loginInfo.setPassword(newPass);
+					return;
 				}
 				else if(secChoice == 3) {
 					System.out.print("Enter new first name: ");
 					String newFirst = sc.nextLine();
 					logInUser.loginInfo.setFirstName(newFirst);
+					return;
 				}
 				else if(secChoice == 4) {
 					System.out.print("Enter new last name: ");
 					String newLast = sc.nextLine();
 					logInUser.loginInfo.setLastName(newLast);
+					return;
 				}
 				else if(secChoice == 5) {
 					System.out.print("Enter new email: ");
 					String newEmail = sc.nextLine();
 					logInUser.loginInfo.setEmailAddress(newEmail);
+					return;
 				}
 				else if(secChoice == 6) {
 					long newNumber = -1;
@@ -223,6 +228,7 @@ public class Database {
 					} while(newNumber == -1);
 
 					logInUser.loginInfo.setPhoneNumber(newNumber);
+					return;
 				}
 			} else if(choice == 2) {
 				System.out.println("\nPress 1 to edit race"
@@ -236,6 +242,7 @@ public class Database {
 					System.out.print("Enter new race (options ~ white, asian, black, latino, other): ");
 					String newRace = sc.nextLine();			
 					logInUser.trait.setEthnicity(newRace);
+					return;
 				} else if(secChoice == 2) {
 					int newHeight = -1;
 					do {
@@ -249,6 +256,7 @@ public class Database {
 					} while(newHeight == -1);
 
 					logInUser.trait.setHeight(newHeight);
+					return;
 				} else if(secChoice == 3) {
 					int newAge = -1;
 					do {
@@ -262,6 +270,7 @@ public class Database {
 					} while(newAge == -1);
 
 					logInUser.trait.setAge(newAge);
+					return;
 				}
 			} else if(choice == 3) {
 				System.out.println("\nPress 1 to edit preferred gender"
@@ -281,6 +290,7 @@ public class Database {
 					} while(!gender.equals("male") || !gender.equals("female") || !gender.equals("other") || !gender.equals("all"));
 
 					logInUser.wish.setSexuality(gender);
+					return;
 				} else if(secChoice == 2) {
 					String culture = "";
 					do {
@@ -288,6 +298,7 @@ public class Database {
 					} while(!culture.equals("white") || !culture.equals("asian") || !culture.equals("black") || !culture.equals("latino") || !culture.equals("other"));
 
 					logInUser.wish.setEthnicity(culture);
+					return;
 				} else if(secChoice == 3) {
 					int height = -1;
 					do {
@@ -301,6 +312,7 @@ public class Database {
 					} while(height == -1);
 
 					logInUser.wish.setHeight(height);
+					return;
 				} else if(secChoice == 4) {
 					int minAge = -1;
 					do {
@@ -314,6 +326,7 @@ public class Database {
 					} while(minAge == -1);
 
 					logInUser.wish.setAgeMin(minAge);
+					return;
 				} else if(secChoice == 5) {
 					int maxAge = -1;
 					do {
@@ -327,6 +340,7 @@ public class Database {
 					} while(maxAge == -1);
 
 					logInUser.wish.setAgeMax(maxAge);
+					return;
 				}
 			} else if(choice == 4) {
 				System.out.println("\nPress 1 to edit your favourite movie"
@@ -336,27 +350,32 @@ public class Database {
 
 				int secChoice = sc.nextInt();
 				sc.nextLine();
+				
 
 				if(secChoice == 1) {
 					System.out.print("Enter new favourite movie: ");
 					String movie = sc.nextLine();
 
 					logInUser.setMovie(movie);
+					return;
 				} else if(secChoice == 2) {
 					System.out.print("Enter new favourite sport: ");
 					String sport = sc.nextLine();
 
 					logInUser.setSport(sport);
+					return;
 				} else if(secChoice == 3) {
 					System.out.print("Enter new favourite season: ");
 					String season = sc.nextLine();
 
 					logInUser.setSeason(season);
+					return;
 				} else if(secChoice == 4) {
 					System.out.print("Enter new favourite music genre: ");
 					String genre = sc.nextLine();
 
 					logInUser.setGenre(genre);
+					return;
 				}
 			} else if(choice == 5) {
 				sc.nextLine();
@@ -365,6 +384,7 @@ public class Database {
 				String description = sc.nextLine();
 
 				logInUser.setDescription(description);
+				return;
 			}
 		} catch(Exception e) {
 		}

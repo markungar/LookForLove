@@ -1,11 +1,11 @@
-8
+14
 Mark
 Ungar
 4169032833
 mark@gmail.com
 markungar
 cheeseandpotatoes
-caucasian
+asian
 male
 18
 186
@@ -104,27 +104,6 @@ football
 spring
 pop
 I'm just a small town girl livin in a lonley world :(
-Kalvin
-Lu
-6321029334
-KalvinLikesCats@gmail.com
-kavlinsKool
-threeandfr33
-Asian
-male
-22
-173
-18
-28
-male
-asian
-135
-0
-starwars the force awakens
-baseball
-fall
-pop
-I am a 22 year old guy who likes to have fun ;)
 Liam
 Kim
 6471112222
@@ -146,6 +125,48 @@ Tennis
 Winter
 Metal
 I'm Kim.
+Kalvin
+Lu
+6321029334
+KalvinLikesCats@gmail.com
+kavlinsKool
+threeandfr33
+Asian
+male
+22
+173
+18
+28
+male
+asian
+135
+0
+starwars the force awakens
+baseball
+fall
+pop
+I am a 22 year old guy who likes to have fun ;)
+mark
+ungar
+12903
+mu1
+ajsdf
+k
+white
+male
+193
+19
+19
+29
+male
+asian
+132
+0
+startrek
+baseball
+winter
+hiphop
+I have feet
 Oliver
 Wang
 4165904333
@@ -167,24 +188,108 @@ PingPong
 Fall
 Chinese music
 I'm oliver and i like things.
-Joe
-Mama
-6473216547
-jomama@mama.com
-yomama
-yomamama
-Ugandan
-Male
-87
-220
+brock
+lepper
+491032123
+motm33@gmail.com
+bevesandbutthead
+fragile
+latino
+male
+177
+29
 18
+38
+female
+black
+160
+0
+entergalactic
+football
+spring
+pop
+whattup gang? im wildin cuz im young and tryna hookup
+william
+jones
+4167043921
+wilthepill@gmail.com
+friendsandteds
+hope
+black
+male
+199
+19
+19
+27
+male
+latino
+180
+0
+entergalactic
+soccer
+spring
+pop
+I enjoy fishing, hunting and soccer. I'm not sure what im looking for, just something to do 
+indy
+cullum
+38121235513
+indy@cullums.ca
+cheapskate
+madSo@ar
+asian
+female
+156
+30
+23
+34
+male
+white
+186
+0
+entergalactic
+hockey
+fall
+rock
+I'm looking to get married to someone in the next couple of years. NOTHING CASUAL.
+jonathon
+perty
+3124853824
+jonthedon@gmail.com
+M3lting
+simpleAs
+asian
+male
+192
 24
-Female
-African
+21
+29
+male
+white
 190
 0
-Space Jam
-Basketball
-Summer
-Beatbox
-I tall and play ball.
+ford vs ferrari
+basketball
+summer
+country
+I love country, and am looking for something just kinda fun and casual
+coperni
+landsing
+90532491230
+coperni@hotmail.com
+fireandtires
+the3nd
+latino
+female
+153
+19
+12
+99
+female
+black
+160
+0
+zombieland
+basketball
+fall
+pop
+I'm a woman, looking to expirement with other women, hmu if u wanna help me out <3
