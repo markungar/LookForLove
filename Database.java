@@ -1077,7 +1077,8 @@ public class Database {
 				// find 
 				people.addAll(findSubsetMatch(user, current.leftChild));
 				if ((wish.getSexuality().equals(currentTrait.getSexuality()) || wish.getSexuality().equals("all")) && 
-                        		(currentWish.getSexuality().equals(trait.getSexuality()) || currentWish.getSexuality().equals("all"))) {
+                        		(currentWish.getSexuality().equals(trait.getSexuality()) || currentWish.getSexuality().equals("all")) &&
+                        		!(current.equals(user)) ) {
 						
 					people.add(new PersonScorePair(current, user.totalScore(current)));
 					
