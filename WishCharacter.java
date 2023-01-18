@@ -40,6 +40,6 @@ public class WishCharacter extends Character {
     //get and set statements for age max & age min
 
     public String toString() {
-        return "\nage: " + age + "\nethnicity: " + ethnicity + "\nheight: " + height + "wish age range: " + ageMin + " - " + ageMax;
+        return "\nwish ethnicity: " + ethnicity + "\nwish height: " + height + "wish age range: " + ageMin + " - " + ageMax;
     }
 }
