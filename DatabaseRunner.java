@@ -101,7 +101,7 @@ public class DatabaseRunner {
 				System.out.println("DREAM PARTNERS (and their matching score)");
 				System.out.println("- - - - - - - - - - - - - - - - - - - - -");
 
-                LinkedList<PersonScorePair> unsortedLinkedMatch = test.findMatch(test.root);
+                LinkedList<PersonScorePair> unsortedLinkedMatch = test.findMatch(test.logInUser);
                 PersonScorePair[] matches = test.sortMatches(unsortedLinkedMatch);
 
 				for (int i = 0; i < matches.length; i++) {
