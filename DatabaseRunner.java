@@ -19,7 +19,6 @@ public class DatabaseRunner {
 
 		Database test = loadFromFile(fileName);
 		//System.out.println(test.loginLookUp.size());
-        System.out.println(test.root.getWish().getAgeMin() + ", " + test.root.getWish().getAgeMax());
 
 		System.out.println("Welcome to LookForLove where true love finds you!");
 		System.out.println("LookForLove is a dating app. In our app, users will be matched base on their preferences and common interests through our top secret algorithm.");
